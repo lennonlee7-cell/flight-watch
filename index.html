@@ -386,7 +386,7 @@ const AL = { TR: ["#FFD200", "#151515"], SQ: ["#1B3A73", "#F2B33D"], BR: ["#0070
 
 const I18N = {
   en: {
-    app: "Flight Watch", heroTitle: "Your flights, on watch.", heroSub: "Flights you watch are checked every 15 minutes, everything else hourly. You get a ping when seats open up or prices move.",
+    app: "Flight Watch", heroTitle: "Your flights, on watch.", heroSub: "Watched flights are checked every 15 minutes, everything else hourly. You only get a ping with good news.",
     foot: "Flight Watch only looks — it never books. Prices are Google Flights' lowest for one booking and can differ slightly on the airline's site.",
     noKey: "This link is missing its key", noKeyMsg: "Please open the full link you were sent (it ends with #k=…).",
     connecting: "Connecting…", offline: "Mac mini hasn't reported in 3 hours", stale: "Last update {ago}",
@@ -405,7 +405,7 @@ const I18N = {
     outTitle: "Outbound flights", outCap: "Round-trip price from, one booking", oneTitle: "Flights", oneCap: "One-way price",
     retTitle: "Return · {d}", retCap: "With {k} out at {dep} · round-trip total", pickOut: "Tap the bell on an outbound flight to see return flights with the full round-trip price.",
     retChecking: "Finding return flights — usually ready in a few minutes.", book: "Book",
-    watching: "Watching", watchHint: "Tap the bell to watch a flight. Watched flights are checked every 15 minutes — you'll be notified if one sells out, comes back or changes price.",
+    watching: "Watching", watchHint: "Tap the bell to watch a flight. It's checked every 15 minutes, and you only get a ping when it has seats again, hits a new lowest price, or reaches your target.",
     settings: "Settings", currency: "Currency", currencyHint: "Changing it restarts price history",
     every: "Check every", min30: "30 min", h1: "1 hour", h2: "2 hours", h3: "3 hours", notifLang: "Alert language",
     notifSect: "Notifications", notif: "Alerts on your iPhone", notifSub: "Set up once, takes a minute", step1: "Install “ntfy” from the App Store.",
@@ -432,7 +432,7 @@ const I18N = {
     wd: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], mon: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
   },
   zh: {
-    app: "航班小幫手", heroTitle: "幫你盯著每一班", heroSub: "按鈴鐺盯的航班每 15 分鐘查一次，其他每小時查一次；有票或價格變動就通知你。",
+    app: "航班小幫手", heroTitle: "幫你盯著每一班", heroSub: "盯的航班每 15 分鐘查一次，其他每小時查一次；只有好消息才通知你。",
     foot: "航班小幫手只負責查，不會自動訂票。價格是 Google 航班上「同一筆訂單」的最低價，航空公司官網可能略有差異。",
     noKey: "這個連結少了鑰匙", noKeyMsg: "請打開完整的連結（結尾是 #k=…）。",
     connecting: "連線中…", offline: "Mac mini 超過 3 小時沒回報", stale: "上次更新：{ago}",
@@ -451,7 +451,7 @@ const I18N = {
     outTitle: "去程航班", outCap: "來回總價起（同一筆訂單）", oneTitle: "航班", oneCap: "單程價格",
     retTitle: "回程 · {d}", retCap: "去程搭 {k}（{dep} 起飛）· 來回總價", pickOut: "點去程航班的鈴鐺，就會列出回程航班和完整的來回總價。",
     retChecking: "正在找回程航班，通常幾分鐘內就好。", book: "訂票",
-    watching: "盯的航班", watchHint: "點鈴鐺就會盯這班：每 15 分鐘查一次，售完、有票釋出、價格變動都會通知。",
+    watching: "盯的航班", watchHint: "點鈴鐺就會盯這班：每 15 分鐘查一次，只有「有票了」「創新低價」「達到目標價」才通知。",
     settings: "設定", currency: "幣別", currencyHint: "更改後價格紀錄會重新開始",
     every: "檢查頻率", min30: "30 分鐘", h1: "1 小時", h2: "2 小時", h3: "3 小時", notifLang: "通知語言",
     notifSect: "通知", notif: "iPhone 推播通知", notifSub: "設定一次就好，約 1 分鐘", step1: "到 App Store 安裝「ntfy」。",
