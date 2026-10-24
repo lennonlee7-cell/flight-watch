@@ -6,214 +6,360 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Flight Watch">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#2447e8">
 <meta name="robots" content="noindex">
 <meta name="referrer" content="no-referrer">
 <title>Flight Watch</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a84ff'/%3E%3Ctext x='50' y='70' font-size='58' text-anchor='middle'%3E%E2%9C%88%EF%B8%8F%3C/text%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a84ff'/%3E%3Ctext x='50' y='70' font-size='58' text-anchor='middle'%3E%E2%9C%88%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231a2a6c'/%3E%3Cstop offset='1' stop-color='%2347b6ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Cpath d='M47 29.5 35 23V13.5a3 3 0 0 0-6 0V23l-12 6.5v4l12-3.5v8.5l-4 3v3l7-2 7 2v-3l-4-3V30l12 3.5z' fill='white'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231a2a6c'/%3E%3Cstop offset='1' stop-color='%2347b6ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' fill='url(%23g)'/%3E%3Cpath d='M47 29.5 35 23V13.5a3 3 0 0 0-6 0V23l-12 6.5v4l12-3.5v8.5l-4 3v3l7-2 7 2v-3l-4-3V30l12 3.5z' fill='white'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f2f2f7; --card: #ffffff; --ink: #1c1c1e; --sub: #6e6e73; --faint: #aeaeb2;
-  --line: #e5e5ea; --fill: #f2f2f7; --accent: #0a6cff; --accent-soft: #e6f0ff; --on-accent: #ffffff;
-  --good: #1a7f37; --good-soft: #e3f5e8; --bad: #c4161c; --bad-soft: #fde8e8;
-  --warn: #9a5b00; --warn-soft: #fff3dc; --shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
+  --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  --bg: #eef2f9; --card: #ffffff; --ink: #0d1530; --sub: #5f6b85; --faint: #9aa5bd;
+  --line: #e4e9f2; --line-2: #cfd7e6; --fill: #f3f6fb;
+  --brand: #2d55f5; --brand-soft: #e9eeff; --on-brand: #ffffff;
+  --good: #0c8f55; --good-soft: #e1f6ec; --bad: #d93a42; --bad-soft: #fdecee; --warn: #a65d00; --warn-soft: #fff3df;
+  --hero: linear-gradient(150deg, #14205a 0%, #2447e8 52%, #3fa9ff 100%);
+  --shadow: 0 1px 2px rgba(13,21,48,.05), 0 8px 24px rgba(13,21,48,.06);
+  --shadow-lg: 0 2px 4px rgba(13,21,48,.04), 0 16px 40px rgba(20,32,90,.12);
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #000000; --card: #1c1c1e; --ink: #f2f2f7; --sub: #a1a1a6; --faint: #636366;
-    --line: #2c2c2e; --fill: #2c2c2e; --accent: #4a9eff; --accent-soft: #10284a; --on-accent: #ffffff;
-    --good: #4cd17a; --good-soft: #0f2e1b; --bad: #ff6b6b; --bad-soft: #3a1416;
-    --warn: #ffb340; --warn-soft: #362606; --shadow: none; color-scheme: dark;
+    --bg: #070b18; --card: #111833; --ink: #eef2ff; --sub: #9aa6c4; --faint: #5d6888;
+    --line: #1d2747; --line-2: #2a365c; --fill: #172040;
+    --brand: #6e8dff; --brand-soft: #1a2552; --on-brand: #ffffff;
+    --good: #45d48c; --good-soft: #0d2e22; --bad: #ff7076; --bad-soft: #3a1520; --warn: #ffb547; --warn-soft: #34250a;
+    --hero: linear-gradient(150deg, #0a1033 0%, #1a35b8 55%, #2a83d6 100%);
+    --shadow: 0 0 0 1px rgba(255,255,255,.03); --shadow-lg: 0 0 0 1px rgba(255,255,255,.04), 0 16px 40px rgba(0,0,0,.35);
+    color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #000000; --card: #1c1c1e; --ink: #f2f2f7; --sub: #a1a1a6; --faint: #636366;
-  --line: #2c2c2e; --fill: #2c2c2e; --accent: #4a9eff; --accent-soft: #10284a; --on-accent: #ffffff;
-  --good: #4cd17a; --good-soft: #0f2e1b; --bad: #ff6b6b; --bad-soft: #3a1416;
-  --warn: #ffb340; --warn-soft: #362606; --shadow: none; color-scheme: dark;
+  --bg: #070b18; --card: #111833; --ink: #eef2ff; --sub: #9aa6c4; --faint: #5d6888;
+  --line: #1d2747; --line-2: #2a365c; --fill: #172040;
+  --brand: #6e8dff; --brand-soft: #1a2552; --on-brand: #ffffff;
+  --good: #45d48c; --good-soft: #0d2e22; --bad: #ff7076; --bad-soft: #3a1520; --warn: #ffb547; --warn-soft: #34250a;
+  --hero: linear-gradient(150deg, #0a1033 0%, #1a35b8 55%, #2a83d6 100%);
+  --shadow: 0 0 0 1px rgba(255,255,255,.03); --shadow-lg: 0 0 0 1px rgba(255,255,255,.04), 0 16px 40px rgba(0,0,0,.35);
+  color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0; background: var(--bg); color: var(--ink);
-  font: 16px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
-  padding: env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 32px);
-}
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 var(--font); padding-bottom: calc(env(safe-area-inset-bottom) + 28px); -webkit-font-smoothing: antialiased; }
 button, input, select { font: inherit; color: inherit; }
 button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+svg { display: block; }
 .wrap { max-width: 560px; margin: 0 auto; padding: 0 16px; }
-header.top { display: flex; align-items: center; justify-content: space-between; padding: 14px 0 6px; }
-.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 22px; letter-spacing: -.01em; }
-.logo { width: 34px; height: 34px; border-radius: 9px; background: var(--accent); display: grid; place-items: center; color: #fff; font-size: 18px; }
-.seg { display: inline-flex; background: var(--fill); border-radius: 9px; padding: 2px; }
-.seg button { border: 0; background: transparent; padding: 5px 11px; border-radius: 7px; font-size: 14px; color: var(--sub); }
-.seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
-.pill { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--sub); padding: 4px 0 14px; }
-.pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); margin-top: 6px; flex: none; }
-.pill.warn .dot { background: var(--warn); } .pill.bad .dot { background: var(--bad); } .pill.busy .dot { background: var(--accent); animation: pulse 1.2s infinite; }
-@keyframes pulse { 50% { opacity: .3; } }
-.notice { border-radius: 12px; padding: 10px 12px; font-size: 14px; margin: 0 0 12px; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- 頁首 ---------- */
+.hero { background: var(--hero); color: #fff; position: relative; overflow: hidden; padding: calc(env(safe-area-inset-top) + 14px) 0 70px; border-radius: 0 0 30px 30px; }
+.hero::before { content: ""; position: absolute; width: 340px; height: 340px; right: -120px; top: -150px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.18), transparent); }
+.hero .arc { position: absolute; right: -10px; bottom: 18px; width: 230px; height: 90px; opacity: .55; pointer-events: none; }
+.bar { display: flex; justify-content: space-between; align-items: center; position: relative; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -.01em; }
+.mark { width: 34px; height: 34px; border-radius: 11px; background: rgba(255,255,255,.18); display: grid; place-items: center; backdrop-filter: blur(6px); }
+.lang { display: flex; background: rgba(255,255,255,.16); border-radius: 999px; padding: 3px; }
+.lang button { border: 0; background: transparent; color: rgba(255,255,255,.8); font-weight: 700; font-size: 13px; padding: 5px 12px; border-radius: 999px; }
+.lang button[aria-pressed="true"] { background: #fff; color: #1a2a6c; }
+.hero h1 { font-size: 28px; line-height: 1.15; letter-spacing: -.02em; margin: 26px 0 6px; font-weight: 800; max-width: 330px; position: relative; }
+.hero-sub { margin: 0; color: rgba(255,255,255,.82); font-size: 14.5px; max-width: 330px; position: relative; }
+.pill { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; background: rgba(255,255,255,.14); border-radius: 999px; padding: 6px 12px 6px 10px; font-size: 13px; font-weight: 600; position: relative; max-width: 100%; }
+.pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #5cf0a2; box-shadow: 0 0 0 3px rgba(92,240,162,.25); flex: none; }
+.pill.warn .dot { background: #ffc35c; box-shadow: 0 0 0 3px rgba(255,195,92,.25); }
+.pill.bad .dot { background: #ff7a80; box-shadow: 0 0 0 3px rgba(255,122,128,.25); }
+.pill.busy .dot { background: #fff; animation: pulse 1.1s infinite; }
+@keyframes pulse { 50% { opacity: .25; } }
+main.wrap { margin-top: -46px; position: relative; }
+.notice { border-radius: 14px; padding: 11px 14px; font-size: 14px; margin: 0 0 12px; font-weight: 600; }
 .notice.warn { background: var(--warn-soft); color: var(--warn); }
 .notice.bad { background: var(--bad-soft); color: var(--bad); }
-.card { background: var(--card); border-radius: 16px; box-shadow: var(--shadow); margin: 0 0 16px; overflow: hidden; }
-.card-h { padding: 14px 16px 10px; display: flex; gap: 12px; align-items: flex-start; }
-.card-h .ttl { flex: 1; min-width: 0; }
-.route { font-size: 20px; font-weight: 700; letter-spacing: -.01em; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.route .nm { font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 999px; }
-.meta { font-size: 14px; color: var(--sub); margin-top: 3px; }
-.btn { border: 0; border-radius: 10px; padding: 8px 14px; background: var(--fill); font-weight: 600; font-size: 15px; }
-.btn.primary { background: var(--accent); color: var(--on-accent); }
-.btn.danger { background: var(--bad-soft); color: var(--bad); }
-.btn.ghost { background: transparent; color: var(--accent); padding: 8px 4px; }
-.btn.block { width: 100%; padding: 13px; font-size: 16px; }
-.btn:disabled { opacity: .5; }
-.tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--fill); color: var(--sub); }
-.pins { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 10px; scrollbar-width: none; }
-.pins::-webkit-scrollbar, .dates::-webkit-scrollbar { display: none; }
-.pinchip { flex: none; border: 1px solid var(--line); background: var(--card); border-radius: 10px; padding: 6px 10px; font-size: 13px; text-align: left; }
-.pinchip b { display: block; font-size: 14px; }
-.pinchip.ok b { color: var(--good); } .pinchip.out b { color: var(--bad); }
-.dates { display: flex; gap: 8px; overflow-x: auto; padding: 4px 16px 12px; scroll-snap-type: x proximity; scrollbar-width: none; }
-.day { flex: none; scroll-snap-align: start; min-width: 74px; border: 1px solid var(--line); background: var(--card); border-radius: 12px; padding: 7px 10px; text-align: center; }
-.day .d1 { font-size: 13px; color: var(--sub); } .day .d2 { font-size: 15px; font-weight: 700; margin-top: 1px; }
-.day[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-.day[aria-pressed="true"] .d1 { color: inherit; opacity: .85; }
-.tools { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 16px 8px; font-size: 14px; color: var(--sub); }
-.tools label { display: flex; align-items: center; gap: 6px; }
-ul.list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.fl { display: flex; align-items: center; gap: 12px; padding: 11px 16px; border-bottom: 1px solid var(--line); }
-.fl:last-child { border-bottom: 0; }
-.fl.out .fl-main, .fl.out .fl-price { opacity: .55; }
-.pin { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--faint); background: transparent; display: grid; place-items: center; color: transparent; font-weight: 800; font-size: 15px; padding: 0; }
-.pin[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-.fl-main { flex: 1; min-width: 0; }
-.fl-times { font-size: 17px; font-weight: 650; font-variant-numeric: tabular-nums; }
-.fl-times sup { font-size: 11px; color: var(--warn); font-weight: 700; margin-left: 1px; }
-.fl-times .arw { color: var(--faint); font-weight: 400; margin: 0 3px; }
-.fl-sub { font-size: 13px; color: var(--sub); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.badges { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
-.badges:empty { display: none; }
-.b { font-size: 11.5px; font-weight: 700; padding: 1px 6px; border-radius: 5px; }
-.b.new { background: var(--accent-soft); color: var(--accent); }
+
+/* ---------- 登機證卡片 ---------- */
+.pass { background: var(--card); border-radius: 24px; box-shadow: var(--shadow-lg); margin: 0 0 18px; overflow: hidden; }
+.pass-top { padding: 16px 18px 16px; background: linear-gradient(180deg, var(--brand-soft) 0%, transparent 100%); }
+.pass-head { display: flex; align-items: center; gap: 8px; min-height: 34px; }
+.kind { font-size: 11.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); }
+.tagname { font-size: 13px; font-weight: 700; color: var(--ink); background: var(--card); border: 1px solid var(--line); padding: 2px 10px; border-radius: 999px; max-width: 45%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tag { font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--fill); color: var(--sub); }
+.ibtn { margin-left: auto; width: 36px; height: 36px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); color: var(--ink); display: grid; place-items: center; flex: none; }
+.route { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; margin-top: 10px; }
+.ap .code { font-size: 36px; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
+.ap .city { font-size: 12.5px; color: var(--sub); margin-top: 5px; font-weight: 500; }
+.ap.r { text-align: right; }
+.path { position: relative; height: 34px; color: var(--brand); }
+.path svg.arcl { position: absolute; inset: 0; width: 100%; height: 100%; }
+.path .pl { position: absolute; left: 50%; top: -2px; transform: translateX(-50%); background: var(--card); border-radius: 50%; padding: 3px; box-shadow: 0 0 0 1px var(--line); }
+.perf { position: relative; border-top: 2px dashed var(--line-2); margin: 2px 20px 0; }
+.perf::before, .perf::after { content: ""; position: absolute; top: -12px; width: 22px; height: 22px; border-radius: 50%; background: var(--bg); }
+.perf::before { left: -32px; } .perf::after { right: -32px; }
+.info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 14px 18px 4px; }
+.info div { min-width: 0; }
+.info .k { font-size: 10.5px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--faint); }
+.info .v { font-size: 14.5px; font-weight: 700; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.info .s { font-size: 12px; color: var(--sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.wchips { display: flex; gap: 8px; overflow-x: auto; padding: 12px 18px 2px; scrollbar-width: none; }
+.wchips::-webkit-scrollbar, .strip::-webkit-scrollbar { display: none; }
+.wc { flex: none; display: flex; align-items: center; gap: 9px; border: 0; background: var(--brand-soft); color: var(--ink); border-radius: 14px; padding: 8px 12px 8px 10px; text-align: left; }
+.wc .ic { color: var(--brand); }
+.wc .t1 { font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+.wc .t2 { font-size: 13px; font-weight: 800; }
+.wc .t2.ok { color: var(--good); } .wc .t2.out { color: var(--bad); }
+
+.slabel span { display: inline-block; color: var(--brand); }
+.slabel { display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--sub); padding: 14px 18px 8px; }
+.strip { display: flex; gap: 8px; overflow-x: auto; padding: 0 18px 2px; scroll-snap-type: x proximity; scrollbar-width: none; }
+.dp { flex: none; scroll-snap-align: start; width: 66px; border: 1.5px solid var(--line); background: var(--card); border-radius: 16px; padding: 8px 4px 9px; text-align: center; line-height: 1.15; }
+.dp .wd { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--sub); }
+.dp .dn { font-size: 21px; font-weight: 800; margin: 3px 0 1px; }
+.dp .mo { font-size: 10.5px; font-weight: 600; color: var(--sub); }
+.dp .pr { font-size: 12px; font-weight: 800; margin-top: 6px; color: var(--ink); }
+.dp.best .pr { color: var(--good); }
+.dp[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--card); }
+.dp[aria-pressed="true"] .wd, .dp[aria-pressed="true"] .mo { color: inherit; opacity: .7; }
+.dp[aria-pressed="true"] .pr { color: inherit; }
+.dp[aria-pressed="true"].best .pr { color: #5cf0a2; }
+:root[data-theme="dark"] .dp[aria-pressed="true"].best .pr { color: var(--good); }
+
+.lh { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; padding: 18px 18px 8px; }
+.lh h3 { margin: 0; font-size: 17px; font-weight: 800; letter-spacing: -.01em; }
+.lh small { display: block; color: var(--sub); font-size: 12.5px; margin-top: 1px; }
+.seg { display: inline-flex; background: var(--fill); border-radius: 11px; padding: 3px; flex: none; }
+.seg button { border: 0; background: transparent; padding: 5px 11px; border-radius: 8px; font-size: 13px; font-weight: 700; color: var(--sub); }
+.seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(13,21,48,.12); }
+.filters { display: flex; gap: 8px; padding: 0 18px 6px; }
+.fchip { border: 1.5px solid var(--line); background: var(--card); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; color: var(--sub); display: inline-flex; align-items: center; gap: 6px; }
+.fchip[aria-pressed="true"] { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); }
+
+ul.flights { list-style: none; margin: 0; padding: 0 10px 4px; }
+.fr { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; grid-template-rows: auto auto; column-gap: 12px; row-gap: 6px; padding: 12px 8px; border-radius: 18px; align-items: center; }
+.fr + .fr { box-shadow: 0 -1px 0 var(--line); }
+.fr.watched { background: var(--brand-soft); box-shadow: none; }
+.fr.watched + .fr { box-shadow: none; }
+.al { grid-row: 1 / span 2; align-self: start; width: 40px; height: 40px; border-radius: 13px; background: var(--al-bg); color: var(--al-fg); font-size: 13px; font-weight: 800; display: grid; place-items: center; letter-spacing: .02em; }
+.tl { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800; letter-spacing: -.01em; min-width: 0; }
+.tl sup { font-size: 10.5px; color: var(--warn); font-weight: 800; margin-left: 1px; }
+.tl .ln { flex: 1; min-width: 16px; height: 2px; position: relative; background: repeating-linear-gradient(90deg, var(--line-2) 0 4px, transparent 4px 7px); }
+.tl .ln::after { content: ""; position: absolute; left: 50%; top: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--card); border: 2px solid var(--brand); transform: translateX(-50%); }
+.tl .ln.stop::after { border-color: var(--warn); }
+.row2 { grid-column: 2 / 4; display: flex; gap: 10px; align-items: center; min-width: 0; }
+.fr-sub { flex: 1; font-size: 12.5px; color: var(--sub); min-width: 0; display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; }
+.fr-sub .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.price { grid-column: 3; grid-row: 1; text-align: right; font-size: 18px; font-weight: 800; letter-spacing: -.01em; }
+.price .was { display: block; font-size: 11px; font-weight: 600; color: var(--sub); letter-spacing: 0; }
+.acts { display: flex; gap: 6px; justify-content: flex-end; align-items: center; flex: none; }
+.bell { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--line-2); background: var(--card); color: var(--sub); display: grid; place-items: center; padding: 0; }
+.bell[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: #fff; }
+.book { display: inline-flex; align-items: center; height: 36px; padding: 0 14px; border-radius: 999px; background: var(--ink); color: var(--card); font-size: 13px; font-weight: 800; text-decoration: none; }
+.fr.out .tl, .fr.out .price, .fr.out .al { opacity: .45; }
+.fr.gone .price .v { text-decoration: line-through; color: var(--faint); }
+.b { font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 6px; letter-spacing: .02em; white-space: nowrap; }
+.b.new { background: var(--brand-soft); color: var(--brand); }
 .b.good { background: var(--good-soft); color: var(--good); }
 .b.bad { background: var(--bad-soft); color: var(--bad); }
-.fl-price { text-align: right; font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums; flex: none; }
-.fl-price small { display: block; font-size: 12px; font-weight: 500; color: var(--sub); }
-.fl.gone .fl-price .v { text-decoration: line-through; color: var(--faint); }
-.empty { padding: 18px 16px; color: var(--sub); font-size: 15px; text-align: center; border-top: 1px solid var(--line); }
-.card-f { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 16px 12px; border-top: 1px solid var(--line); font-size: 13px; color: var(--sub); }
-.card-f a { color: var(--accent); font-weight: 600; font-size: 15px; text-decoration: none; }
-.hero { padding: 26px 20px; text-align: center; }
-.hero h2 { margin: 6px 0 6px; font-size: 20px; }
-.hero p { margin: 0 0 16px; color: var(--sub); font-size: 15px; }
-.sect { font-size: 13px; font-weight: 600; color: var(--sub); text-transform: uppercase; letter-spacing: .04em; margin: 22px 4px 8px; }
-.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
-.row:last-child { border-bottom: 0; }
-.row .lab { font-size: 16px; } .row .lab small { display: block; color: var(--sub); font-size: 13px; }
-select.inp, input.inp { border: 1px solid var(--line); background: var(--fill); border-radius: 10px; padding: 8px 10px; min-height: 40px; width: 100%; }
-.row select.inp { width: auto; max-width: 52%; }
-code.topic { font: 600 14px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--fill); padding: 6px 8px; border-radius: 8px; word-break: break-all; display: block; margin-top: 6px; user-select: all; }
-ol.steps { margin: 8px 0 0; padding-left: 20px; color: var(--sub); font-size: 14px; }
-ol.steps li { margin: 3px 0; }
-.ev { padding: 10px 16px; border-bottom: 1px solid var(--line); }
-.ev:last-child { border-bottom: 0; }
-.ev .et { font-weight: 600; font-size: 15px; } .ev .em { white-space: pre-wrap; font-size: 13px; color: var(--sub); margin-top: 2px; }
-.ev time { font-size: 12px; color: var(--faint); }
-.foot { text-align: center; font-size: 12.5px; color: var(--sub); margin: 24px 8px 0; }
-#toast { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 20px); transform: translate(-50%, 20px); background: rgba(28,28,30,.94); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; opacity: 0; pointer-events: none; transition: .25s; width: max-content; max-width: calc(100% - 32px); text-align: center; z-index: 50; }
+.b.mute { background: var(--fill); color: var(--sub); }
+.fr.watched .b.new, .fr.watched .b.mute { background: var(--card); }
+
+.ret { margin: 6px 12px 10px; border-radius: 20px; background: var(--fill); padding-bottom: 4px; }
+.ret .rh { display: flex; align-items: center; gap: 10px; padding: 14px 14px 6px; }
+.ret .rh .al { width: 30px; height: 30px; border-radius: 10px; font-size: 11px; grid-row: auto; }
+.ret .rh b { font-size: 14.5px; } .ret .rh small { display: block; color: var(--sub); font-size: 12px; }
+.ret ul.flights { padding: 0 2px 2px; }
+.ret .fr + .fr { box-shadow: 0 -1px 0 var(--line-2); }
+.hintbox { margin: 6px 12px 10px; border-radius: 18px; border: 1.5px dashed var(--line-2); padding: 14px 16px; color: var(--sub); font-size: 13.5px; display: flex; gap: 12px; align-items: center; }
+.hintbox .ic { width: 34px; height: 34px; border-radius: 50%; background: var(--brand-soft); color: var(--brand); display: grid; place-items: center; flex: none; }
+.empty { padding: 20px 18px; color: var(--sub); font-size: 14px; text-align: center; }
+.pf { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 18px 16px; color: var(--sub); font-size: 12.5px; border-top: 1px solid var(--line); margin-top: 6px; }
+.gf { display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--line); border-radius: 999px; padding: 7px 12px; color: var(--ink); font-weight: 700; font-size: 13px; text-decoration: none; white-space: nowrap; }
+.note { padding: 2px 18px 0; font-size: 12px; color: var(--faint); }
+
+.add { width: 100%; border: 2px dashed var(--line-2); background: transparent; border-radius: 22px; padding: 18px; font-weight: 800; font-size: 15px; color: var(--brand); display: flex; gap: 8px; justify-content: center; align-items: center; margin-bottom: 4px; }
+.heroCard { background: var(--card); border-radius: 26px; box-shadow: var(--shadow-lg); padding: 26px 22px 22px; text-align: center; }
+.heroCard h2 { margin: 14px 0 6px; font-size: 21px; font-weight: 800; letter-spacing: -.01em; }
+.heroCard p { margin: 0 auto 18px; color: var(--sub); max-width: 320px; }
+.btn { border: 0; border-radius: 14px; padding: 12px 16px; font-weight: 800; font-size: 15px; background: var(--fill); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.btn.primary { background: var(--brand); color: var(--on-brand); box-shadow: 0 6px 16px rgba(45,85,245,.28); }
+.btn.danger { background: var(--bad-soft); color: var(--bad); }
+.btn.block { width: 100%; }
+
+.sect { font-size: 12px; font-weight: 800; color: var(--sub); text-transform: uppercase; letter-spacing: .1em; margin: 28px 6px 10px; }
+.card { background: var(--card); border-radius: 22px; box-shadow: var(--shadow); overflow: hidden; }
+.cpad { padding: 18px; }
+.ch { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+.ch .ic { width: 40px; height: 40px; border-radius: 13px; background: var(--brand-soft); color: var(--brand); display: grid; place-items: center; flex: none; }
+.ch b { font-size: 16px; font-weight: 800; } .ch small { display: block; color: var(--sub); font-size: 13px; }
+ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+ol.steps li { counter-increment: s; display: flex; gap: 10px; align-items: flex-start; margin: 9px 0; font-size: 14px; }
+ol.steps li::before { content: counter(s); width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: var(--card); font-size: 12px; font-weight: 800; display: grid; place-items: center; flex: none; margin-top: 1px; }
+.topic { display: flex; align-items: center; gap: 8px; background: var(--fill); border-radius: 14px; padding: 6px 6px 6px 12px; margin: 12px 0 10px; }
+.topic code { flex: 1; font: 700 13.5px ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; user-select: all; }
+.topic .btn { padding: 8px 12px; font-size: 13px; background: var(--card); }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 18px; }
+.row + .row { border-top: 1px solid var(--line); }
+.row .lab { display: flex; gap: 12px; align-items: center; font-weight: 700; }
+.row .lab .ic { width: 32px; height: 32px; border-radius: 10px; background: var(--fill); color: var(--sub); display: grid; place-items: center; flex: none; }
+.row .lab small { display: block; font-weight: 500; color: var(--sub); font-size: 12px; }
+select.inp, input.inp { border: 1.5px solid var(--line); background: var(--fill); border-radius: 12px; padding: 9px 12px; min-height: 44px; width: 100%; font-size: 16px; font-weight: 600; outline: none; }
+.inp:focus { border-color: var(--brand); }
+.row select.inp { width: auto; min-width: 110px; }
+details.tips summary { list-style: none; cursor: pointer; }
+details.tips summary::-webkit-details-marker { display: none; }
+details.tips .chev { margin-left: auto; transition: transform .2s; color: var(--faint); }
+details.tips[open] .chev { transform: rotate(90deg); }
+details.tips .ch { margin: 0; }
+details.tips ol { margin-top: 14px; }
+.ev { display: grid; grid-template-columns: 14px 1fr; gap: 12px; padding: 12px 18px; }
+.ev + .ev { border-top: 1px solid var(--line); }
+.ev .d { width: 10px; height: 10px; border-radius: 50%; background: var(--brand); margin-top: 6px; box-shadow: 0 0 0 4px var(--brand-soft); }
+.ev time { font-size: 12px; color: var(--faint); font-weight: 600; }
+.ev .et { font-weight: 800; font-size: 14.5px; margin-top: 1px; }
+.ev .em { white-space: pre-wrap; font-size: 12.5px; color: var(--sub); margin-top: 3px; font-variant-numeric: tabular-nums; }
+.foot { text-align: center; font-size: 12.5px; color: var(--sub); margin: 26px auto 0; max-width: 400px; }
+.skel { height: 14px; border-radius: 7px; background: var(--fill); margin: 10px 0; animation: pulse 1.4s infinite; }
+
+#toast { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 20px); transform: translate(-50%, 16px); background: #0d1530; color: #fff; padding: 11px 18px; border-radius: 14px; font-size: 14px; font-weight: 600; opacity: 0; pointer-events: none; transition: .25s; width: max-content; max-width: calc(100% - 32px); text-align: center; z-index: 50; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
 #toast.on { opacity: 1; transform: translate(-50%, 0); }
-dialog { border: 0; padding: 0; border-radius: 18px; background: var(--card); color: var(--ink); width: min(520px, calc(100% - 24px)); max-height: calc(100dvh - 24px); }
-dialog::backdrop { background: rgba(0,0,0,.4); }
-.dlg-h { position: sticky; top: 0; background: var(--card); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); z-index: 1; }
-.dlg-h h3 { margin: 0; font-size: 17px; text-align: center; }
-.dlg-h .btn:first-child { justify-self: start; font-weight: 500; }
-.dlg-h .btn:last-child { justify-self: end; }
-.btn.strong { font-weight: 700; }
+
+/* ---------- 編輯表單（底部抽屜） ---------- */
+dialog.sheet { margin: auto auto 0; width: 100%; max-width: 560px; max-height: 92dvh; border: 0; border-radius: 26px 26px 0 0; padding: 0; background: var(--card); color: var(--ink); }
+dialog.sheet[open] { animation: up .3s cubic-bezier(.2,.8,.2,1); }
+@keyframes up { from { transform: translateY(48px); opacity: 0; } }
+@media (min-width: 620px) { dialog.sheet { margin: auto; border-radius: 26px; } }
+dialog::backdrop { background: rgba(7,11,24,.5); }
+.sheet-h { position: sticky; top: 0; z-index: 2; background: var(--card); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 8px 10px 10px; border-bottom: 1px solid var(--line); }
+.sheet-h::before { content: ""; position: absolute; left: 50%; top: 6px; width: 38px; height: 5px; border-radius: 3px; background: var(--line-2); transform: translateX(-50%); }
+.sheet-h h3 { margin: 10px 0 0; font-size: 16px; font-weight: 800; text-align: center; }
+.lnk { border: 0; background: transparent; color: var(--brand); font-weight: 600; font-size: 16px; padding: 12px 8px 2px; }
+.lnk:first-child { justify-self: start; } .lnk.strong { justify-self: end; font-weight: 800; }
+.sheet-b { padding: 14px 16px calc(24px + env(safe-area-inset-bottom)); }
+.err { color: var(--bad); background: var(--bad-soft); border-radius: 12px; padding: 10px 12px; font-size: 14px; font-weight: 600; margin-bottom: 12px; }
 .err:empty { display: none; }
-.dlg-b { padding: 12px 16px 16px; }
-.fld { margin: 0 0 14px; }
-.fld label:not(.sw), .fld .lbl { display: block; font-size: 13px; font-weight: 600; color: var(--sub); margin: 0 0 5px; }
+.seg.big { display: flex; width: 100%; padding: 4px; border-radius: 14px; }
+.seg.big button { flex: 1; padding: 9px; font-size: 14.5px; border-radius: 10px; }
+.od { display: grid; grid-template-columns: 1fr 44px 1fr; gap: 8px; align-items: center; margin-top: 14px; }
+.apin { display: block; border: 1.5px solid var(--line); border-radius: 18px; padding: 10px 14px 11px; background: var(--fill); cursor: text; }
+.apin:focus-within { border-color: var(--brand); }
+.apin .k { font-size: 10.5px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--sub); }
+.apin input { display: block; width: 100%; border: 0; outline: none; background: transparent; padding: 2px 0 0; font-size: 28px; font-weight: 800; text-transform: uppercase; letter-spacing: .02em; }
+.apin .city { font-size: 12px; color: var(--sub); min-height: 1.3em; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.swap { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--card); color: var(--brand); display: grid; place-items: center; padding: 0; }
+.quick { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.quick button { border: 1.5px solid var(--line); background: var(--card); border-radius: 999px; padding: 4px 11px; font-size: 13px; font-weight: 700; color: var(--sub); }
+fieldset.grp { border: 0; margin: 20px 0 0; padding: 0; min-width: 0; }
+fieldset.grp legend { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--sub); padding: 0; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.od { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: end; }
-.od input { text-transform: uppercase; font-weight: 700; font-size: 18px; text-align: center; letter-spacing: .05em; }
-.quick { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
-.quick button { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 3px 10px; font-size: 13px; }
-.sw { position: relative; width: 50px; height: 30px; flex: none; }
+.fl label, .fl .lbl { display: block; font-size: 12px; font-weight: 700; color: var(--sub); margin: 0 0 5px; }
+.fl + .fl, .two + .fl, .fl + .two, .two + .two { margin-top: 10px; }
+.two > .fl + .fl { margin-top: 0; }
+.swrow { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; font-weight: 700; }
+.sw { position: relative; width: 52px; height: 32px; flex: none; }
 .sw input { opacity: 0; width: 0; height: 0; position: absolute; }
-.sw span { position: absolute; inset: 0; background: var(--faint); border-radius: 999px; transition: .2s; }
-.sw span::after { content: ""; position: absolute; width: 26px; height: 26px; left: 2px; top: 2px; background: #fff; border-radius: 50%; transition: .2s; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.sw span { position: absolute; inset: 0; background: var(--line-2); border-radius: 999px; transition: .2s; }
+.sw span::after { content: ""; position: absolute; width: 28px; height: 28px; left: 2px; top: 2px; background: #fff; border-radius: 50%; transition: .2s; box-shadow: 0 2px 4px rgba(0,0,0,.2); }
 .sw input:checked + span { background: var(--good); }
 .sw input:checked + span::after { transform: translateX(20px); }
-.sw input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
-.swrow { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 6px 0; }
-.err { color: var(--bad); font-size: 14px; min-height: 1.2em; margin: 4px 0 10px; }
-.acts { display: flex; gap: 10px; }
-.acts .btn { flex: 1; padding: 12px; }
-.hint { font-size: 13px; color: var(--sub); margin-top: 4px; }
-.skel { height: 14px; border-radius: 6px; background: var(--fill); margin: 8px 0; }
-@media (max-width: 360px) { .route { font-size: 18px; } .fl { gap: 10px; padding: 10px 12px; } }
+.sw input:focus-visible + span { outline: 2px solid var(--brand); outline-offset: 2px; }
+.stepper { display: flex; align-items: center; border: 1.5px solid var(--line); background: var(--fill); border-radius: 12px; min-height: 44px; }
+.stepper button { border: 0; background: transparent; width: 44px; height: 42px; font-size: 20px; font-weight: 700; color: var(--brand); }
+.stepper output { flex: 1; text-align: center; font-weight: 800; font-size: 16px; }
+.money-in { position: relative; }
+.money-in span { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--sub); font-weight: 700; font-size: 15px; pointer-events: none; }
+.money-in input { padding-left: 42px; }
+.meter { margin-top: 20px; }
+.meter .mb { height: 6px; border-radius: 3px; background: var(--fill); overflow: hidden; }
+.meter .mb i { display: block; height: 100%; border-radius: 3px; background: var(--brand); transition: width .2s; }
+.meter.over .mb i { background: var(--bad); }
+.meter small { display: block; margin-top: 6px; color: var(--sub); font-size: 12.5px; }
+.meter.over small { color: var(--bad); font-weight: 700; }
+.sheet-acts { display: flex; gap: 10px; margin-top: 18px; }
+.sheet-acts .btn { flex: 1; }
+@media (max-width: 360px) { .ap .code { font-size: 30px; } .tl { font-size: 16px; } .price { font-size: 16px; } .dp { width: 60px; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <div class="brand"><div class="logo" aria-hidden="true">✈</div><span data-i="app"></span></div>
-    <div class="seg" role="group" aria-label="Language">
-      <button data-lang="en" aria-pressed="true">EN</button><button data-lang="zh" aria-pressed="false">中文</button>
+<header class="hero">
+  <svg class="arc" viewBox="0 0 230 90" fill="none" aria-hidden="true">
+    <path d="M6 84 C60 10 170 4 226 40" stroke="white" stroke-width="1.5" stroke-dasharray="4 6" stroke-linecap="round"/>
+    <circle cx="6" cy="84" r="4" fill="white"/>
+    <g transform="translate(196 18) rotate(28)"><path d="M14 7.5 9.5 5V1.7a1.2 1.2 0 0 0-2.4 0V5L2.5 7.5V9l4.6-1.3v3.2L5.5 12v1.2l2.8-.8 2.8.8V12l-1.6-1.1V7.7L14 9z" fill="white" transform="scale(1.6) translate(-8 -7)"/></g>
+  </svg>
+  <div class="wrap">
+    <div class="bar">
+      <div class="brand"><span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span><span data-i="app"></span></div>
+      <div class="lang" role="group" aria-label="Language"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="zh" aria-pressed="false">中文</button></div>
     </div>
-  </header>
-  <div id="pill" class="pill busy"><span class="dot"></span><span></span></div>
+    <h1 data-i="heroTitle"></h1>
+    <p class="hero-sub" data-i="heroSub"></p>
+    <div id="pill" class="pill busy"><span class="dot"></span><span></span></div>
+  </div>
+</header>
+<main class="wrap">
   <div id="notices"></div>
-  <main id="app"><div class="card"><div class="dlg-b"><div class="skel"></div><div class="skel" style="width:60%"></div><div class="skel" style="width:80%"></div></div></div></main>
+  <div id="app"><div class="heroCard"><div class="skel"></div><div class="skel" style="width:70%"></div><div class="skel" style="width:85%"></div></div></div>
   <p class="foot" data-i="foot"></p>
-</div>
+</main>
 
-<dialog id="dlg">
+<dialog id="dlg" class="sheet">
   <form method="dialog" id="tripForm" novalidate>
-    <div class="dlg-h">
-      <button type="button" class="btn ghost" data-close data-i="cancel"></button>
+    <div class="sheet-h">
+      <button type="button" class="lnk" data-close data-i="cancel"></button>
       <h3 id="dlgTitle"></h3>
-      <button type="button" class="btn ghost strong" id="fSave" data-i="save"></button>
+      <button type="button" class="lnk strong" id="fSave" data-i="save"></button>
     </div>
-    <div class="dlg-b">
+    <div class="sheet-b">
       <div class="err" id="fErr" role="alert"></div>
-      <div class="fld"><label for="fName" data-i="fName"></label><input class="inp" id="fName" maxlength="24" autocomplete="off"></div>
-      <div class="fld">
-        <div class="od">
-          <div><label for="fFrom" class="lbl" data-i="fFrom"></label><input class="inp" id="fFrom" maxlength="3" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-          <button type="button" class="btn" id="fSwap" aria-label="Swap">⇄</button>
-          <div><label for="fTo" class="lbl" data-i="fTo"></label><input class="inp" id="fTo" maxlength="3" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
-        </div>
-        <div class="quick" id="fQuick"></div>
+      <div class="seg big" role="group" id="fTrip">
+        <button type="button" data-trip="round" data-i="roundTrip"></button><button type="button" data-trip="oneway" data-i="oneWay"></button>
       </div>
-      <div class="fld two">
-        <div><label for="fD0" data-i="fD0"></label><input class="inp" type="date" id="fD0"></div>
-        <div><label for="fD1" data-i="fD1"></label><input class="inp" type="date" id="fD1"></div>
+      <div class="od">
+        <label class="apin"><span class="k" data-i="fFrom"></span><input id="fFrom" maxlength="3" autocomplete="off" autocapitalize="characters" spellcheck="false"><span class="city" id="fFromCity"></span></label>
+        <button type="button" class="swap" id="fSwap" aria-label="Swap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg></button>
+        <label class="apin"><span class="k" data-i="fTo"></span><input id="fTo" maxlength="3" autocomplete="off" autocapitalize="characters" spellcheck="false"><span class="city" id="fToCity"></span></label>
       </div>
-      <div class="fld">
-        <span class="lbl" data-i="fWin"></span>
+      <div class="quick" id="fQuick"></div>
+
+      <fieldset class="grp"><legend data-i="depart"></legend>
         <div class="two">
-          <input class="inp" type="time" id="fT0" aria-label="From">
-          <input class="inp" type="time" id="fT1" aria-label="To">
+          <div class="fl"><label for="fD0" data-i="fD0"></label><input class="inp" type="date" id="fD0"></div>
+          <div class="fl"><label for="fD1" data-i="fD1"></label><input class="inp" type="date" id="fD1"></div>
         </div>
-        <div class="quick" id="fWinQuick"></div>
-        <div class="hint" data-i="fWinHint"></div>
-      </div>
-      <div class="fld two">
-        <div><label for="fMax" id="fMaxLbl"></label><input class="inp" type="number" inputmode="numeric" id="fMax" min="0" step="1"></div>
-        <div><label for="fAdults" data-i="fAdults"></label><select class="inp" id="fAdults"></select></div>
-      </div>
-      <div class="fld"><label for="fSeat" data-i="fSeat"></label><select class="inp" id="fSeat"></select></div>
-      <div class="fld">
-        <div class="swrow"><span data-i="fNonstop"></span><label class="sw"><input type="checkbox" id="fNonstop"><span></span></label></div>
-        <div class="swrow"><span data-i="fEnabled"></span><label class="sw"><input type="checkbox" id="fEnabled"><span></span></label></div>
-      </div>
-      <div class="acts" style="margin-top:6px" id="fMore">
-        <button type="button" class="btn" id="fReturn" data-i="addReturn"></button>
-        <button type="button" class="btn danger" id="fDelete" data-i="delete"></button>
-      </div>
+        <div class="fl"><span class="lbl" data-i="fWin"></span>
+          <div class="two"><input class="inp" type="time" id="fT0" aria-label="From"><input class="inp" type="time" id="fT1" aria-label="To"></div>
+          <div class="quick" data-win="fT"></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="grp" id="retGrp"><legend data-i="ret"></legend>
+        <div class="two">
+          <div class="fl"><label for="fR0" data-i="fD0"></label><input class="inp" type="date" id="fR0"></div>
+          <div class="fl"><label for="fR1" data-i="fD1"></label><input class="inp" type="date" id="fR1"></div>
+        </div>
+        <div class="fl"><span class="lbl" data-i="fWin"></span>
+          <div class="two"><input class="inp" type="time" id="fRT0" aria-label="From"><input class="inp" type="time" id="fRT1" aria-label="To"></div>
+          <div class="quick" data-win="fRT"></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="grp"><legend data-i="options"></legend>
+        <div class="fl"><label for="fName" data-i="fName"></label><input class="inp" id="fName" maxlength="24" autocomplete="off"></div>
+        <div class="two">
+          <div class="fl"><label for="fMax" id="fMaxLbl"></label><div class="money-in"><span id="fMaxSym"></span><input class="inp" type="number" inputmode="numeric" id="fMax" min="0" step="1"></div></div>
+          <div class="fl"><span class="lbl" data-i="fAdults"></span><div class="stepper"><button type="button" data-step="-1" aria-label="−">−</button><output id="fAdults">1</output><button type="button" data-step="1" aria-label="+">+</button></div></div>
+        </div>
+        <div class="fl"><label for="fSeat" data-i="fSeat"></label><select class="inp" id="fSeat"></select></div>
+        <div class="fl">
+          <div class="swrow"><span data-i="fNonstop"></span><label class="sw"><input type="checkbox" id="fNonstop"><span></span></label></div>
+          <div class="swrow"><span data-i="fEnabled"></span><label class="sw"><input type="checkbox" id="fEnabled"><span></span></label></div>
+        </div>
+      </fieldset>
+      <div class="meter" id="fMeter"><div class="mb"><i></i></div><small></small></div>
+      <div class="sheet-acts" id="fMore"><button type="button" class="btn" id="fReturn" data-i="addReturn"></button><button type="button" class="btn danger" id="fDelete" data-i="delete"></button></div>
     </div>
   </form>
 </dialog>
@@ -223,95 +369,131 @@ dialog::backdrop { background: rgba(0,0,0,.4); }
 "use strict";
 const NTFY = "https://ntfy.sh";
 const TZ = "Asia/Singapore";
-const MAX_DATES = 40;
+const MAX_QUERIES = 40;
 const SYM = { TWD: "NT$", SGD: "S$", USD: "US$", MYR: "RM", HKD: "HK$", JPY: "¥" };
+const AIRPORTS = {
+  SIN: ["Singapore", "新加坡"], TPE: ["Taipei", "台北桃園"], TSA: ["Taipei Songshan", "台北松山"], KHH: ["Kaohsiung", "高雄"],
+  RMQ: ["Taichung", "台中"], HKG: ["Hong Kong", "香港"], MFM: ["Macau", "澳門"], KUL: ["Kuala Lumpur", "吉隆坡"],
+  PEN: ["Penang", "檳城"], BKK: ["Bangkok", "曼谷"], DMK: ["Bangkok Don Mueang", "曼谷廊曼"], NRT: ["Tokyo Narita", "東京成田"],
+  HND: ["Tokyo Haneda", "東京羽田"], KIX: ["Osaka", "大阪關西"], ICN: ["Seoul", "首爾仁川"], PVG: ["Shanghai", "上海浦東"],
+  PEK: ["Beijing", "北京"], CGK: ["Jakarta", "雅加達"], DPS: ["Bali", "峇里島"], MNL: ["Manila", "馬尼拉"],
+  SGN: ["Ho Chi Minh City", "胡志明市"], HAN: ["Hanoi", "河內"], SYD: ["Sydney", "雪梨"], MEL: ["Melbourne", "墨爾本"], LHR: ["London", "倫敦"],
+};
+const AL = { TR: ["#FFD200", "#151515"], SQ: ["#1B3A73", "#F2B33D"], BR: ["#00704A", "#fff"], CI: ["#C3166F", "#fff"],
+  JX: ["#202020", "#CFAE74"], AK: ["#E3000F", "#fff"], D7: ["#E3000F", "#fff"], "3K": ["#FF5F00", "#fff"], CX: ["#00645A", "#fff"],
+  MH: ["#0B3B8C", "#fff"], TG: ["#4B1F6F", "#F2C94C"], VN: ["#004F6E", "#F6C343"], "5J": ["#FDB813", "#151515"], PR: ["#0038A8", "#fff"],
+  IT: ["#E4007F", "#fff"], OD: ["#C8102E", "#fff"], MU: ["#002E6E", "#fff"], CA: ["#C8102E", "#fff"] };
 
 const I18N = {
   en: {
-    app: "Flight Watch", foot: "Flight Watch only looks — it never books. Buy on Google Flights or the airline's website.",
+    app: "Flight Watch", heroTitle: "Your flights, on watch.", heroSub: "Flights you watch are checked every 15 minutes, everything else hourly. You get a ping when seats open up or prices move.",
+    foot: "Flight Watch only looks — it never books. Prices are Google Flights' lowest for one booking and can differ slightly on the airline's site.",
     noKey: "This link is missing its key", noKeyMsg: "Please open the full link you were sent (it ends with #k=…).",
-    connecting: "Connecting to Mac mini…", offline: "No report from Mac mini in the last 3 hours. It may be offline — your settings are kept and it will catch up.",
-    stale: "Last report from Mac mini {ago}.",
-    live: "Checked {ago} · next check {next}", waitingFirst: "Mac mini is ready · add a trip to start",
-    applying: "Saving… Mac mini applies changes within a minute", applied: "Mac mini applied your changes ✓",
-    trouble: "Having trouble reaching Google Flights — retrying automatically.",
-    rejected: "Mac mini couldn't use your last change: {err}",
-    noTrips: "No trips yet", noTripsMsg: "Add the route and dates you're thinking about. Mac mini checks every hour and notifies you about seats and price changes.",
-    addTrip: "Add a trip", editTrip: "Edit trip", newTrip: "New trip", edit: "Edit", paused: "Paused",
-    anyTime: "Any time", nonstop: "Nonstop", stop1: "1 stop", stopsN: "{n} stops", via: "via {v}", upTo1: "Up to 1 stop",
-    target: "Target {p}", adultsN: "{n} adults", sortTime: "Time", sortPrice: "Price", onlyWin: "My time only",
-    notChecked: "Not checked yet — usually within a few minutes after saving.", dayErr: "Couldn't check this date last time: {e}",
-    noFlights: "No flights listed for this date.", noneInWin: "No flights in your time window on this date.",
-    google: "Open on Google Flights ↗", checked: "Checked {ago}",
-    badgeNew: "NEW", badgeBack: "SEATS BACK", badgeGone: "SOLD OUT", badgeLow: "Lowest seen", lowWas: "low {p}",
-    watching: "Watching", watchHint: "Tap ○ to watch a flight. You'll be notified if it sells out, comes back or changes price.",
-    settings: "Settings", currency: "Currency", currencyHint: "Changing it restarts price tracking",
-    every: "Check every", min30: "30 minutes", h1: "1 hour", h2: "2 hours", h3: "3 hours",
-    notifLang: "Notification language",
-    notif: "Notifications", notifHow: "Get alerts on your iPhone:", step1: "Install “ntfy” from the App Store.",
-    step2: "Tap +, paste the channel name below (leave “Use another server” off), then tap Subscribe.",
-    step3: "Allow notifications when asked.", copy: "Copy", copied: "Copied", test: "Send test notification",
+    connecting: "Connecting…", offline: "Mac mini hasn't reported in 3 hours", stale: "Last update {ago}",
+    live: "Updated {ago} · next check {next}", waitingFirst: "Ready — add a trip to start",
+    applying: "Saving… applies within a minute", applied: "Your changes are live ✓",
+    trouble: "Having trouble reaching Google Flights — retrying automatically.", rejected: "That change couldn't be used: {err}",
+    noTrips: "Where are you flying?", noTripsMsg: "Add a route and the dates you could travel. You'll get a ping when seats open up or prices drop.",
+    addTrip: "Add a trip", editTrip: "Edit trip", newTrip: "New trip", paused: "Paused",
+    roundTrip: "Round trip", oneWay: "One way", depart: "Depart", ret: "Return", target: "Target", options: "Options",
+    anyTime: "Any time", nonstop: "Nonstop", stop1: "1 stop", stopsN: "{n} stops", via: "via {v}", upTo1: "≤1 stop",
+    adultsN: "{n} adults", adult1: "1 adult", none: "None", sortTime: "Time", sortPrice: "Price", myTimes: "My times",
+    notChecked: "Checking these dates — usually ready in a few minutes.", dayErr: "Couldn't check this last time: {e}",
+    noFlights: "No flights listed for this date.", noneInWin: "No flights in your preferred time.",
+    google: "Google Flights", checked: "Updated {ago}",
+    badgeNew: "NEW", badgeBack: "SEATS BACK", badgeGone: "SOLD OUT", badgeNoPrice: "NO PRICE", lowWas: "low {p}",
+    outTitle: "Outbound flights", outCap: "Round-trip price from, one booking", oneTitle: "Flights", oneCap: "One-way price",
+    retTitle: "Return · {d}", retCap: "With {k} out at {dep} · round-trip total", pickOut: "Tap the bell on an outbound flight to see return flights with the full round-trip price.",
+    retChecking: "Finding return flights — usually ready in a few minutes.", book: "Book",
+    watching: "Watching", watchHint: "Tap the bell to watch a flight. Watched flights are checked every 15 minutes — you'll be notified if one sells out, comes back or changes price.",
+    settings: "Settings", currency: "Currency", currencyHint: "Changing it restarts price history",
+    every: "Check every", min30: "30 min", h1: "1 hour", h2: "2 hours", h3: "3 hours", notifLang: "Alert language",
+    notifSect: "Notifications", notif: "Alerts on your iPhone", notifSub: "Set up once, takes a minute", step1: "Install “ntfy” from the App Store.",
+    step2: "Copy the channel below. In ntfy tap +, paste it (leave “Use another server” off), tap Subscribe.",
+    step3: "Allow notifications, then send a test.", copy: "Copy", copied: "Copied", test: "Send a test alert",
     testTitle: "Test notification", testMsg: "If you can see this, notifications work.", testSent: "Test sent — check your phone",
-    recent: "Recent notifications", noRecent: "Nothing yet.",
-    cancel: "Cancel", save: "Save", delete: "Delete trip", addReturn: "Add return trip", returnName: "Return",
-    fName: "Name (optional)", fFrom: "From", fTo: "To", fD0: "Earliest date", fD1: "Latest date",
-    fWin: "Preferred departure time", fWinHint: "Flights outside this time are still listed, just greyed out.",
-    fMax: "Target price ({c}, optional)", fAdults: "Adults", fSeat: "Cabin", fNonstop: "Nonstop only", fEnabled: "Watching on",
+    fast: "Book in a minute", fastSub: "Get ready before seats open up",
+    fast1: "Save your passport details in your airline account (KrisFlyer, Scoot, EVA…) so checkout fills them in.",
+    fast2: "Add your card to Apple Pay or Safari AutoFill.",
+    fast3: "When an alert arrives, tap “Book now” — Google opens with your flights already picked. Then choose the airline and pay.",
+    recent: "Recent alerts", noRecent: "No alerts yet.",
+    cancel: "Cancel", save: "Save", delete: "Delete", addReturn: "Add return", returnName: "Return",
+    fName: "Trip name (optional)", fFrom: "From", fTo: "To", fD0: "Earliest", fD1: "Latest",
+    fWin: "Preferred departure time", fMax: "Target price", fAdults: "Adults", fSeat: "Cabin", fNonstop: "Nonstop only", fEnabled: "Watching on",
     economy: "Economy", "premium-economy": "Premium economy", business: "Business", first: "First",
     morning: "Morning", afternoon: "Afternoon", evening: "Evening",
-    eAirport: "Use 3-letter airport codes, e.g. SIN, TPE.", eSame: "From and To must be different.",
-    eDates: "Choose both dates.", eOrder: "Latest date is before the earliest date.", eSpan: "Up to 31 days per trip.",
-    ePast: "These dates have already passed.", eTotal: "Too many dates in total ({n}). Limit is {max} — shorten a trip.",
-    eTime: "Choose a time window.", confirmDelete: "Delete this trip?",
-    confirmCur: "Changing currency restarts price tracking. Continue?",
-    sent: "Saved — Mac mini will pick it up within a minute", saveFail: "Couldn't save. Check your connection and try again.",
-    unsaved: "Saving your changes…",
-    justNow: "just now", minAgo: "{n} min ago", hAgo: "{n} h ago", dAgo: "{n} d ago",
-    wd: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    mon: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    eAirport: "Use 3-letter airport codes, e.g. SIN, TPE.", eSame: "From and To must be different.", eDates: "Choose both dates.",
+    eOrder: "The latest date is before the earliest date.", eSpan: "Up to 31 days per date range.", ePast: "These dates have already passed.",
+    eRetBefore: "Return dates must be on or after the first departure date.", eQueries: "That's {n} searches per check — the limit is {max}. Narrow the dates.",
+    eBudget: "Too many searches — narrow the dates or stop watching another flight first.", eTime: "Choose a time window.",
+    confirmDelete: "Delete this trip?", confirmCur: "Changing currency restarts price history. Continue?",
+    sent: "Saved — live within a minute", saveFail: "Couldn't save. Check your connection and try again.", unsaved: "Saving…",
+    meter: "{n} of {max} searches per check", justNow: "just now", minAgo: "{n} min ago", hAgo: "{n} h ago", dAgo: "{n} d ago",
+    wd: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], mon: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
   },
   zh: {
-    app: "航班小幫手", foot: "航班小幫手只負責查，不會自動訂票；請到 Google 航班或航空公司官網購買。",
+    app: "航班小幫手", heroTitle: "幫你盯著每一班", heroSub: "按鈴鐺盯的航班每 15 分鐘查一次，其他每小時查一次；有票或價格變動就通知你。",
+    foot: "航班小幫手只負責查，不會自動訂票。價格是 Google 航班上「同一筆訂單」的最低價，航空公司官網可能略有差異。",
     noKey: "這個連結少了鑰匙", noKeyMsg: "請打開完整的連結（結尾是 #k=…）。",
-    connecting: "正在連線 Mac mini…", offline: "Mac mini 已超過 3 小時沒有回報，可能離線中；設定都還在，恢復後會自動補查。",
-    stale: "Mac mini 上次回報是{ago}。",
-    live: "{ago}查過 · 下次 {next}", waitingFirst: "Mac mini 已就緒 · 新增行程就開始盯",
-    applying: "儲存中…Mac mini 約 1 分鐘內套用", applied: "Mac mini 已套用你的變更 ✓",
-    trouble: "暫時連不上 Google 航班，會自動重試。",
-    rejected: "Mac mini 無法套用上次的變更：{err}",
-    noTrips: "還沒有行程", noTripsMsg: "填上想飛的航線和日期，Mac mini 每小時查一次，有票或價格變化就通知你。",
-    addTrip: "新增行程", editTrip: "編輯行程", newTrip: "新行程", edit: "編輯", paused: "已暫停",
+    connecting: "連線中…", offline: "Mac mini 超過 3 小時沒回報", stale: "上次更新：{ago}",
+    live: "{ago}更新 · 下次 {next}", waitingFirst: "準備好了，新增行程就開始盯",
+    applying: "儲存中…約 1 分鐘內生效", applied: "變更已生效 ✓",
+    trouble: "暫時連不上 Google 航班，會自動重試。", rejected: "這次的變更無法套用：{err}",
+    noTrips: "想飛去哪裡？", noTripsMsg: "填上航線和可以出發的日期，有票或降價就通知你。",
+    addTrip: "新增行程", editTrip: "編輯行程", newTrip: "新行程", paused: "已暫停",
+    roundTrip: "來回", oneWay: "單程", depart: "去程", ret: "回程", target: "目標價", options: "其他設定",
     anyTime: "不限時段", nonstop: "直飛", stop1: "轉機 1 次", stopsN: "轉機 {n} 次", via: "經 {v}", upTo1: "最多轉 1 次",
-    target: "目標 {p}", adultsN: "{n} 位大人", sortTime: "時間", sortPrice: "價格", onlyWin: "只看我的時段",
-    notChecked: "還沒查到這天，儲存後通常幾分鐘內就會有。", dayErr: "上次查這天失敗：{e}",
-    noFlights: "這天沒有列出航班。", noneInWin: "這天在你的時段內沒有航班。",
-    google: "在 Google 航班打開 ↗", checked: "{ago}查過",
-    badgeNew: "新", badgeBack: "有票了", badgeGone: "售完", badgeLow: "最低價", lowWas: "最低 {p}",
-    watching: "盯的航班", watchHint: "點 ○ 就會盯這班：售完、有票釋出、價格變動都會通知。",
+    adultsN: "{n} 位大人", adult1: "1 位大人", none: "未設定", sortTime: "時間", sortPrice: "價格", myTimes: "我的時段",
+    notChecked: "正在查這些日期，通常幾分鐘內就好。", dayErr: "上次查詢失敗：{e}",
+    noFlights: "這天沒有列出航班。", noneInWin: "你的時段內沒有航班。",
+    google: "Google 航班", checked: "{ago}更新",
+    badgeNew: "新", badgeBack: "有票了", badgeGone: "售完", badgeNoPrice: "無報價", lowWas: "最低 {p}",
+    outTitle: "去程航班", outCap: "來回總價起（同一筆訂單）", oneTitle: "航班", oneCap: "單程價格",
+    retTitle: "回程 · {d}", retCap: "去程搭 {k}（{dep} 起飛）· 來回總價", pickOut: "點去程航班的鈴鐺，就會列出回程航班和完整的來回總價。",
+    retChecking: "正在找回程航班，通常幾分鐘內就好。", book: "訂票",
+    watching: "盯的航班", watchHint: "點鈴鐺就會盯這班：每 15 分鐘查一次，售完、有票釋出、價格變動都會通知。",
     settings: "設定", currency: "幣別", currencyHint: "更改後價格紀錄會重新開始",
-    every: "檢查頻率", min30: "每 30 分鐘", h1: "每 1 小時", h2: "每 2 小時", h3: "每 3 小時",
-    notifLang: "通知語言",
-    notif: "推播通知", notifHow: "在 iPhone 收通知：", step1: "到 App Store 安裝「ntfy」。",
-    step2: "點 +，貼上下面的頻道名稱（「Use another server」保持關閉），按 Subscribe。",
-    step3: "跳出詢問時允許通知。", copy: "複製", copied: "已複製", test: "傳一則測試通知",
+    every: "檢查頻率", min30: "30 分鐘", h1: "1 小時", h2: "2 小時", h3: "3 小時", notifLang: "通知語言",
+    notifSect: "通知", notif: "iPhone 推播通知", notifSub: "設定一次就好，約 1 分鐘", step1: "到 App Store 安裝「ntfy」。",
+    step2: "複製下面的頻道名稱，在 ntfy 點 +、貼上（「Use another server」保持關閉），按 Subscribe。",
+    step3: "允許通知，再傳一則測試。", copy: "複製", copied: "已複製", test: "傳一則測試通知",
     testTitle: "測試推播", testMsg: "看得到這則，代表推播設定成功。", testSent: "已送出，看看手機",
+    fast: "1 分鐘內訂好", fastSub: "有票前先準備好",
+    fast1: "把護照資料存進航空公司會員（KrisFlyer、Scoot、長榮…），結帳時會自動帶入。",
+    fast2: "把信用卡加進 Apple Pay 或 Safari 自動填寫。",
+    fast3: "收到通知點「立即訂票」，Google 會直接打開已選好的去回航班，選航空公司付款就好。",
     recent: "最近的通知", noRecent: "還沒有通知。",
-    cancel: "取消", save: "儲存", delete: "刪除行程", addReturn: "新增回程", returnName: "回程",
-    fName: "名稱（可不填）", fFrom: "出發", fTo: "抵達", fD0: "最早日期", fD1: "最晚日期",
-    fWin: "希望的出發時段", fWinHint: "時段外的航班仍會列出，只是變淡。",
-    fMax: "目標價（{c}，可不填）", fAdults: "大人", fSeat: "艙等", fNonstop: "只看直飛", fEnabled: "開啟監控",
+    cancel: "取消", save: "儲存", delete: "刪除", addReturn: "新增回程", returnName: "回程",
+    fName: "行程名稱（可不填）", fFrom: "出發", fTo: "抵達", fD0: "最早", fD1: "最晚",
+    fWin: "希望的出發時段", fMax: "目標價", fAdults: "大人", fSeat: "艙等", fNonstop: "只看直飛", fEnabled: "開啟監控",
     economy: "經濟艙", "premium-economy": "豪華經濟艙", business: "商務艙", first: "頭等艙",
     morning: "上午", afternoon: "下午", evening: "晚上",
-    eAirport: "請填 3 碼機場代號，例如 SIN、TPE。", eSame: "出發和抵達不能一樣。",
-    eDates: "請選兩個日期。", eOrder: "最晚日期早於最早日期。", eSpan: "每個行程最多 31 天。",
-    ePast: "這些日期已經過了。", eTotal: "日期加總太多（{n} 天），上限 {max} 天，請縮短行程。",
-    eTime: "請選時段。", confirmDelete: "要刪除這個行程嗎？",
-    confirmCur: "更改幣別會重新開始價格紀錄，確定嗎？",
-    sent: "已儲存，Mac mini 約 1 分鐘內套用", saveFail: "儲存失敗，請檢查網路後再試一次。",
-    unsaved: "正在儲存變更…",
-    justNow: "剛剛", minAgo: "{n} 分鐘前", hAgo: "{n} 小時前", dAgo: "{n} 天前",
+    eAirport: "請填 3 碼機場代號，例如 SIN、TPE。", eSame: "出發和抵達不能一樣。", eDates: "請選兩個日期。",
+    eOrder: "最晚日期早於最早日期。", eSpan: "每段日期最多 31 天。", ePast: "這些日期已經過了。",
+    eRetBefore: "回程日期要在最早去程日期之後。", eQueries: "每輪要查 {n} 次，上限 {max} 次，請縮短日期。",
+    eBudget: "查詢次數超過上限，請縮短日期或先取消盯其他航班。", eTime: "請選時段。",
+    confirmDelete: "要刪除這個行程嗎？", confirmCur: "更改幣別會重新開始價格紀錄，確定嗎？",
+    sent: "已儲存，約 1 分鐘內生效", saveFail: "儲存失敗，請檢查網路後再試一次。", unsaved: "儲存中…",
+    meter: "每輪查詢 {n}／{max} 次", justNow: "剛剛", minAgo: "{n} 分鐘前", hAgo: "{n} 小時前", dAgo: "{n} 天前",
     wd: ["日", "一", "二", "三", "四", "五", "六"], mon: [],
   },
+};
+
+// ---------- 圖示 ----------
+const svg = (d, s = 18, w = 2) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const IC = {
+  bell: (s) => svg('<path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>', s),
+  edit: (s) => svg('<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>', s),
+  ext: (s) => svg('<path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>', s),
+  plus: (s) => svg('<path d="M12 5v14M5 12h14"/>', s, 2.5),
+  gear: (s) => svg('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>', s),
+  coin: (s) => svg('<circle cx="12" cy="12" r="9"/><path d="M14.5 9.5a2.5 2 0 0 0-2.5-1.5c-1.4 0-2.5.8-2.5 2s1.1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2a2.5 2 0 0 1-2.5-1.5M12 6.5v1.5M12 16v1.5"/>', s),
+  clock: (s) => svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>', s),
+  globe: (s) => svg('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>', s),
+  bolt: (s) => svg('<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>', s),
+  chev: (s) => svg('<path d="m9 6 6 6-6 6"/>', s),
+  up: (s) => svg('<path d="M12 19V5M5 12l7-7 7 7"/>', s),
+  plane: (s) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>`,
 };
 
 // ---------- 小工具 ----------
@@ -326,16 +508,19 @@ function t(k, vars) {
   const s = I18N[LANG][k] ?? I18N.en[k] ?? k;
   return typeof s === "string" ? s.replace(/\{(\w+)\}/g, (_, v) => vars?.[v] ?? "") : s;
 }
-const money = (p, cur) => (p == null ? "—" : (SYM[cur] || cur + " ") + Number(p).toLocaleString("en-US"));
+const money = (p, cur = S.draft?.currency || "SGD") => (p == null ? "—" : (SYM[cur] || cur + " ") + Number(p).toLocaleString("en-US"));
 const todaySG = () => new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date());
 const addDays = (iso, n) => { const d = new Date(iso + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
 const daysBetween = (a, b) => Math.round((Date.parse(b + "T00:00:00Z") - Date.parse(a + "T00:00:00Z")) / 864e5);
-function dayParts(iso) {
-  const [y, m, d] = iso.split("-").map(Number);
-  const wd = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
-  return LANG === "zh" ? [`${m}/${d}`, `週${t("wd")[wd]}`] : [`${t("wd")[wd]}`, `${d} ${t("mon")[m - 1]}`];
+function ymd(iso) { const [y, m, d] = iso.split("-").map(Number); return { y, m, d, wd: new Date(Date.UTC(y, m - 1, d)).getUTCDay() }; }
+const fmtDay = (iso) => { const x = ymd(iso); return LANG === "zh" ? `${x.m}/${x.d}（${t("wd")[x.wd]}）` : `${t("wd")[x.wd]} ${x.d} ${t("mon")[x.m - 1]}`; };
+const fmtShort = (iso) => { const x = ymd(iso); return LANG === "zh" ? `${x.m}/${x.d}` : `${x.d} ${t("mon")[x.m - 1]}`; };
+function fmtRange(a, b) {
+  if (a === b) return fmtShort(a);
+  const x = ymd(a), y = ymd(b);
+  if (LANG === "zh") return `${x.m}/${x.d}–${y.m === x.m ? "" : y.m + "/"}${y.d}`;
+  return x.m === y.m ? `${x.d}–${y.d} ${t("mon")[y.m - 1]}` : `${x.d} ${t("mon")[x.m - 1]} – ${y.d} ${t("mon")[y.m - 1]}`;
 }
-const fmtDay = (iso) => { const [a, b] = dayParts(iso); return LANG === "zh" ? `${a}（${b.slice(1)}）` : `${a} ${b}`; };
 const fmtDur = (m) => { const h = Math.floor(m / 60), r = m % 60; return LANG === "zh" ? `${h} 小時${r ? ` ${r} 分` : ""}` : `${h}h${r ? ` ${r}m` : ""}`; };
 const clock = (iso) => new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: TZ }).format(new Date(iso));
 function ago(iso) {
@@ -347,21 +532,49 @@ function ago(iso) {
 }
 const recent = (iso, h = 24) => iso && Date.now() - Date.parse(iso) < h * 36e5;
 const mins = (hhmm) => { const [h, m] = hhmm.split(":").map(Number); return h * 60 + m; };
-function inWin(dep, w) {
-  const a = mins(w.time_from), b = mins(w.time_to), x = mins(dep);
-  return a <= b ? a <= x && x <= b : x >= a || x <= b;
+function inWin(dep, win) { const a = mins(win[0]), b = mins(win[1]), x = mins(dep); return a <= b ? a <= x && x <= b : x >= a || x <= b; }
+const anyWin = (a, b) => a === "00:00" && b === "23:59";
+const city = (c) => AIRPORTS[c]?.[LANG === "zh" ? 1 : 0] || "";
+function alStyle(code) {
+  const c = AL[code];
+  if (c) return `--al-bg:${c[0]};--al-fg:${c[1]}`;
+  let h = 0; for (const ch of code) h = (h * 31 + ch.charCodeAt(0)) % 360;
+  return `--al-bg:hsl(${h} 50% 42%);--al-fg:#fff`;
 }
-function watchDays(w) {
-  const start = w.date_from > todaySG() ? w.date_from : todaySG();
-  const out = [];
-  for (let d = start; d <= w.date_to; d = addDays(d, 1)) out.push(d);
-  return out;
-}
-const anyTime = (w) => w.time_from === "00:00" && w.time_to === "23:59";
+const alCode = (k) => k.slice(0, 2);
 function toast(msg) {
   const el = $("#toast");
   el.textContent = msg; el.classList.add("on");
   clearTimeout(toast.tm); toast.tm = setTimeout(() => el.classList.remove("on"), 2800);
+}
+const bookingUrl = (bk) => /^[A-Za-z0-9+/=_-]+$/.test(bk || "")
+  ? `https://www.google.com/travel/flights/booking?tfs=${encodeURIComponent(bk)}&hl=${LANG === "zh" ? "zh-TW" : "en"}&curr=${S.draft.currency}` : null;
+
+// ---------- 行程規劃（和 Mac mini 的 phase1／phase2 同一套規則） ----------
+function daysRange(a, b) { const out = []; for (let d = a > todaySG() ? a : todaySG(); d <= b; d = addDays(d, 1)) out.push(d); return out; }
+const outDays = (w) => daysRange(w.date_from, w.date_to);
+const retDays = (w) => (w.trip === "round" ? daysRange(w.ret_from, w.ret_to) : []);
+const outPins = (w) => w.pinned.filter((p) => !p.includes(">")).map((p) => p.split("|"));
+function phase1(w) {
+  if (w.trip !== "round") return outDays(w).map((d) => d);
+  const rs = retDays(w), o = [];
+  for (const d of outDays(w)) for (const r of rs) if (r >= d) o.push(`${d}~${r}`);
+  return o;
+}
+function phase2(w) {
+  if (w.trip !== "round") return [];
+  const ods = new Set(outDays(w)), rs = retDays(w), o = [];
+  for (const [d, k] of outPins(w)) if (ods.has(d)) for (const r of rs) if (r >= d) o.push(`${d}~${r}~${k}`);
+  return o;
+}
+const queryCount = (w) => (w.enabled ? phase1(w).length + phase2(w).length : 0);
+const totalQueries = (ws) => ws.reduce((n, w) => n + queryCount(w), 0);
+const winOut = (w) => [w.time_from, w.time_to];
+const winRet = (w) => [w.ret_time_from || "00:00", w.ret_time_to || "23:59"];
+function cheapest(fl, win) {
+  let best = null;
+  for (const f of fl || []) if (!f.gone && f.p != null && inWin(f.dep, win) && (best == null || f.p < best)) best = f.p;
+  return best;
 }
 
 // ---------- 鑰匙與頻道 ----------
@@ -374,10 +587,18 @@ const T = KEY ? { main: `fw-${KEY}`, cfg: `fw-${KEY}-cfg`, st: `fw-${KEY}-st` } 
 // ---------- 狀態 ----------
 const S = {
   status: null, draft: null, pendingV: 0, dirty: false, saving: false, loaded: false,
-  sel: {}, sort: store.get("fw-sort") || "time", onlyWin: {}, focus: { w: hash.get("w"), d: hash.get("d") }, timer: null,
+  sel: {}, sort: store.get("fw-sort") || "time", onlyWin: {}, timer: null,
+  focus: (() => { const d = (hash.get("d") || "").split("~"); return { w: hash.get("w"), d: d[0] || null, r: d[1] || null }; })(),
 };
 const defaultCfg = () => ({ v: 0, currency: "SGD", lang: "en", interval: 60, watches: [] });
 const clone = (o) => JSON.parse(JSON.stringify(o));
+function normalize(cfg) {
+  for (const w of cfg.watches) {
+    w.trip = w.trip === "round" ? "round" : "oneway";
+    w.pinned = Array.isArray(w.pinned) ? w.pinned : [];
+  }
+  return cfg;
+}
 
 async function pollTopic(topic, since) {
   const r = await fetch(`${NTFY}/${topic}/json?poll=1&since=${since}`, { cache: "no-store" });
@@ -403,23 +624,18 @@ async function latest(topic, since) {
 async function refresh() {
   if (!T) return;
   let st = null, pend = null;
-  try {
-    [st, pend] = await Promise.all([latest(T.st, "3h"), latest(T.cfg, "12h").catch(() => null)]);
-  } catch {
-    st = null;
-  }
+  try { [st, pend] = await Promise.all([latest(T.st, "3h"), latest(T.cfg, "12h").catch(() => null)]); } catch { st = null; }
   if (st) { S.status = st; store.set("fw-last", JSON.stringify(st)); }
   else if (!S.status) { try { S.status = JSON.parse(store.get("fw-last")); S.status && (S.status._cached = true); } catch {} }
-  const base = S.status?.cfg;
-  const engineV = base?.v || 0;
+  const base = S.status?.cfg, engineV = base?.v || 0;
   if (pend && pend.v > engineV && pend.v > S.pendingV && pend.v !== S.status?.cfg_error_v) S.pendingV = pend.v;
   if (S.pendingV && engineV >= S.pendingV) { toast(t("applied")); S.pendingV = 0; }
   if (S.pendingV && S.status?.cfg_error_v === S.pendingV) S.pendingV = 0; // Mac mini 退件，回到它手上的版本
   if (!S.dirty && !S.saving) {
-    if (!S.pendingV) S.draft = clone(base || defaultCfg());
-    else if (!S.draft || (S.draft.v || 0) < S.pendingV) S.draft = pend && pend.v === S.pendingV ? clone(pend) : S.draft;
+    if (!S.pendingV) S.draft = normalize(clone(base || defaultCfg()));
+    else if (!S.draft || (S.draft.v || 0) < S.pendingV) S.draft = pend && pend.v === S.pendingV ? normalize(clone(pend)) : S.draft;
   }
-  if (!S.draft) S.draft = clone(base || defaultCfg());
+  if (!S.draft) S.draft = normalize(clone(base || defaultCfg()));
   S.loaded = true;
   render();
   clearTimeout(refresh.tm);
@@ -471,149 +687,235 @@ function renderPill() {
   $("#notices").innerHTML = n.join("");
 }
 
-function tripMeta(w, cur) {
-  const parts = [fmtDay(w.date_from) + (LANG === "zh" ? "–" : " – ") + fmtDay(w.date_to)];
-  parts.push(anyTime(w) ? t("anyTime") : `${w.time_from}–${w.time_to}`);
-  parts.push(w.nonstop ? t("nonstop") : t("upTo1"));
-  if (w.max_price) parts.push(t("target", { p: money(w.max_price, cur) }));
-  if (w.adults > 1) parts.push(t("adultsN", { n: w.adults }));
-  if (w.seat !== "economy") parts.push(t(w.seat));
-  return parts.map(esc).join(" · ");
-}
 function stopsText(f) {
   if (!f.stops) return t("nonstop");
   const s = f.stops === 1 ? t("stop1") : t("stopsN", { n: f.stops });
   return f.via ? `${s} ${t("via", { v: f.via })}` : s;
 }
-function cheapest(fl, w) {
-  let best = null;
-  for (const f of fl || []) if (!f.gone && f.p != null && inWin(f.dep, w) && (best == null || f.p < best)) best = f.p;
-  return best;
-}
-function pickDay(w, res, days) {
-  if (S.focus.w === w.id && days.includes(S.focus.d)) return S.focus.d;
-  return days.find((d) => res?.days?.[d]) || days[0];
-}
 
-function flightRow(w, day, f, cur) {
-  const key = `${day}|${f.k}`, pinned = w.pinned.includes(key), win = inWin(f.dep, w);
+// 一行航班。kind: one（單程）、out（來回的去程）、ret（來回的回程）
+function flightRow(w, lk, f, kind) {
+  const [d, r, k0] = lk.split("~");
+  const key = kind === "ret" ? `${d}|${k0}>${r}|${f.k}` : `${d}|${f.k}`;
+  const watched = w.pinned.includes(key), win = inWin(f.dep, kind === "ret" ? winRet(w) : winOut(w));
+  const noPrice = f.gone && f.low == null;
   const b = [];
-  if (f.gone) b.push(`<span class="b bad">${esc(t("badgeGone"))}</span>`);
+  if (f.gone) b.push(`<span class="b ${noPrice ? "mute" : "bad"}">${esc(t(noPrice ? "badgeNoPrice" : "badgeGone"))}</span>`);
   else {
     if (recent(f.back)) b.push(`<span class="b good">${esc(t("badgeBack"))}</span>`);
     else if (!f.init && recent(f.first)) b.push(`<span class="b new">${esc(t("badgeNew"))}</span>`);
     if (recent(f.chg) && f.prev != null && f.p != null && f.prev !== f.p) {
-      const d = f.p - f.prev;
-      b.push(`<span class="b ${d < 0 ? "good" : "bad"}">${d < 0 ? "↓" : "↑"} ${esc(money(Math.abs(d), cur))}</span>`);
+      const dd = f.p - f.prev;
+      b.push(`<span class="b ${dd < 0 ? "good" : "bad"}">${dd < 0 ? "↓" : "↑"} ${esc(money(Math.abs(dd)))}</span>`);
     }
   }
-  const low = !f.gone && f.low != null && f.p != null && f.low < f.p ? `<small>${esc(t("lowWas", { p: money(f.low, cur) }))}</small>` : "";
-  return `<li class="fl${win ? "" : " out"}${f.gone ? " gone" : ""}">
-    <button class="pin" data-act="pin" data-w="${esc(w.id)}" data-key="${esc(key)}" aria-pressed="${pinned}" aria-label="${esc(t("watching"))} ${esc(f.k)}">✓</button>
-    <div class="fl-main">
-      <div class="fl-times">${esc(f.dep)}<span class="arw">→</span>${esc(f.arr)}${f.plus ? `<sup>+${f.plus}</sup>` : ""}</div>
-      <div class="fl-sub">${esc(f.k.replace(/\+/g, " + "))} · ${esc(f.al)} · ${esc(fmtDur(f.dur))} · ${esc(stopsText(f))}</div>
-      <div class="badges">${b.join("")}</div>
-    </div>
-    <div class="fl-price"><span class="v">${esc(money(f.p, cur))}</span>${low}</div>
+  const was = !f.gone && f.low != null && f.p != null && f.low < f.p ? `<span class="was">${esc(t("lowWas", { p: money(f.low) }))}</span>` : "";
+  const book = (kind !== "out" && !f.gone && bookingUrl(f.bk))
+    ? `<a class="book" href="${esc(bookingUrl(f.bk))}" target="_blank" rel="noopener">${esc(t("book"))}</a>` : "";
+  return `<li class="fr${win ? "" : " out"}${f.gone ? " gone" : ""}${watched ? " watched" : ""}">
+    <div class="al" style="${alStyle(alCode(f.k))}">${esc(alCode(f.k))}</div>
+    <div class="tl num">${esc(f.dep)}<span class="ln${f.stops ? " stop" : ""}"></span>${esc(f.arr)}${f.plus ? `<sup>+${f.plus}</sup>` : ""}</div>
+    <div class="price num"><span class="v">${f.gone && noPrice ? "—" : esc(money(f.p))}</span>${was}</div>
+    <div class="row2"><div class="fr-sub"><span class="nm">${esc(f.al)} · ${esc(f.k.replace(/\+/g, " + "))}</span><span>${esc(fmtDur(f.dur))} · ${esc(stopsText(f))}</span>${b.join("")}</div>
+    <div class="acts">${book}<button class="bell" data-act="pin" data-w="${esc(w.id)}" data-key="${esc(key)}" aria-pressed="${watched}" aria-label="${esc(t("watching"))} ${esc(f.k)}">${IC.bell(17)}</button></div></div>
   </li>`;
 }
 
-function tripCard(w) {
-  const cur = S.draft.currency, res = S.status?.res?.[w.id], days = watchDays(w);
-  let sel = S.sel[w.id];
-  if (!days.includes(sel)) sel = S.sel[w.id] = pickDay(w, res, days);
-  const head = `<div class="card-h"><div class="ttl">
-      <div class="route">${esc(w.from)} → ${esc(w.to)}${w.name ? `<span class="nm">${esc(w.name)}</span>` : ""}${w.enabled ? "" : `<span class="tag">${esc(t("paused"))}</span>`}</div>
-      <div class="meta">${tripMeta(w, cur)}</div></div>
-      <button class="btn" data-act="edit" data-w="${esc(w.id)}">${esc(t("edit"))}</button></div>`;
-  if (!days.length) return `<section class="card" id="trip-${esc(w.id)}">${head}<div class="empty">${esc(t("ePast"))}</div></section>`;
-
-  const pins = w.pinned.filter((p) => days.includes(p.split("|")[0])).map((p) => {
-    const [d, k] = p.split("|");
-    const f = res?.days?.[d]?.fl?.find((x) => x.k === k);
-    const ok = f && !f.gone && f.p != null;
-    return `<button class="pinchip ${f ? (ok ? "ok" : "out") : ""}" data-act="day" data-w="${esc(w.id)}" data-d="${esc(d)}">
-      ${esc(dayParts(d).join(" "))} · ${esc(k)}<b>${f ? esc(ok ? money(f.p, cur) : t("badgeGone")) : "…"}</b></button>`;
-  });
-  const chips = days.map((d) => {
-    const dd = res?.days?.[d], err = res?.err?.[d], c = cheapest(dd?.fl, w), [a, b] = dayParts(d);
-    const price = dd ? (c != null ? money(c, cur) : "—") : err ? "!" : "…";
-    return `<button class="day" data-act="day" data-w="${esc(w.id)}" data-d="${esc(d)}" aria-pressed="${d === sel}">
-      <div class="d1">${esc(a)} ${esc(b)}</div><div class="d2">${esc(price)}</div></button>`;
-  }).join("");
-
-  const dd = res?.days?.[sel], err = res?.err?.[sel];
-  let list;
-  if (!dd) list = `<div class="empty">${esc(err ? t("dayErr", { e: err }) : t("notChecked"))}</div>`;
-  else {
-    let fl = dd.fl.slice();
-    if (S.onlyWin[w.id]) fl = fl.filter((f) => inWin(f.dep, w));
-    if (S.sort === "price") fl.sort((a, b) => (!!a.gone - !!b.gone) || ((a.p ?? 1e12) - (b.p ?? 1e12)));
-    list = fl.length ? `<ul class="list">${fl.map((f) => flightRow(w, sel, f, cur)).join("")}</ul>`
-      : `<div class="empty">${esc(S.onlyWin[w.id] ? t("noneInWin") : t("noFlights"))}</div>`;
-    if (err) list = `<div class="notice warn" style="margin:0 16px 10px">${esc(t("dayErr", { e: err }))}</div>` + list;
+function listBlock(w, lk, kind, fl) {
+  if (!fl) {
+    const err = S.status?.res?.[w.id]?.err?.[lk];
+    return `<div class="empty">${esc(err ? t("dayErr", { e: err }) : t(kind === "ret" ? "retChecking" : "notChecked"))}</div>`;
   }
-  const url = /^https:\/\/www\.google\.com\/travel\/flights/.test(res?.url?.[sel] || "") ? res.url[sel] : null;
-  return `<section class="card" id="trip-${esc(w.id)}">${head}
-    ${pins.length ? `<div class="pins">${pins.join("")}</div>` : ""}
-    <div class="dates" data-w="${esc(w.id)}">${chips}</div>
-    <div class="tools">
-      <div class="seg" role="group"><button data-act="sort" data-v="time" aria-pressed="${S.sort === "time"}">${esc(t("sortTime"))}</button><button data-act="sort" data-v="price" aria-pressed="${S.sort === "price"}">${esc(t("sortPrice"))}</button></div>
-      <label><input type="checkbox" data-act="win" data-w="${esc(w.id)}" ${S.onlyWin[w.id] ? "checked" : ""}>${esc(t("onlyWin"))}</label>
-    </div>
-    ${list}
-    <div class="card-f"><span>${dd ? esc(t("checked", { ago: ago(dd.checked) })) : ""}</span>${url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(t("google"))}</a>` : ""}</div>
-  </section>`;
+  let rows = fl.slice();
+  const win = kind === "ret" ? winRet(w) : winOut(w);
+  if (S.onlyWin[w.id]) rows = rows.filter((f) => inWin(f.dep, win));
+  if (S.sort === "price") rows.sort((a, b) => (!!a.gone - !!b.gone) || ((a.p ?? 1e12) - (b.p ?? 1e12)));
+  if (!rows.length) return `<div class="empty">${esc(t(S.onlyWin[w.id] ? "noneInWin" : "noFlights"))}</div>`;
+  return `<ul class="flights">${rows.map((f) => flightRow(w, lk, f, kind)).join("")}</ul>`;
 }
 
+function datePill(w, which, d, price, sel, best) {
+  const x = ymd(d), mon = LANG === "zh" ? `${x.m} 月` : t("mon")[x.m - 1];
+  return `<button class="dp${best ? " best" : ""}" data-act="${which}" data-w="${esc(w.id)}" data-d="${esc(d)}" aria-pressed="${d === sel}">
+    <div class="wd">${esc(t("wd")[x.wd])}</div><div class="dn num">${x.d}</div><div class="mo">${esc(mon)}</div><div class="pr num">${esc(price)}</div></button>`;
+}
+function strip(w, which, days, priceOf, sel) {
+  const vals = days.map((d) => priceOf(d));
+  const nums = vals.filter((v) => typeof v === "number");
+  const min = nums.length ? Math.min(...nums) : null;
+  return `<div class="strip" data-s="${esc(w.id)}-${which}">${days.map((d, i) =>
+    datePill(w, which, d, typeof vals[i] === "number" ? money(vals[i]) : vals[i], sel, nums.length > 1 && vals[i] === min)).join("")}</div>`;
+}
+function dayPrice(res, lk, win) {
+  const dd = res?.days?.[lk];
+  if (dd) { const c = cheapest(dd.fl, win); return c == null ? "—" : c; }
+  return res?.err?.[lk] ? "!" : "…";
+}
+
+function watchChips(w, res) {
+  const out = [];
+  for (const [d, k] of outPins(w)) {
+    let best = null, seen = null;
+    const lks = w.trip === "round" ? retDays(w).filter((r) => r >= d).map((r) => `${d}~${r}`) : [d];
+    for (const lk of lks) {
+      const f = res?.days?.[lk]?.fl?.find((x) => x.k === k);
+      if (f) { seen = seen || f; if (!f.gone && f.p != null && (!best || f.p < best.p)) best = f; }
+    }
+    const f = best || seen, ok = !!best;
+    const price = f ? (ok ? (w.trip === "round" && LANG !== "zh" ? "from " : "") + money(best.p) : t(f.low == null ? "badgeNoPrice" : "badgeGone")) : "…";
+    out.push(`<button class="wc" data-act="dep" data-w="${esc(w.id)}" data-d="${esc(d)}"><span class="ic">${IC.bell(16)}</span>
+      <span><div class="t1">${esc(k)} · ${esc(fmtShort(d))}</div><div class="t2 ${f ? (ok ? "ok" : "out") : ""} num">${esc(price)}</div></span></button>`);
+  }
+  for (const p of w.pinned.filter((x) => x.includes(">"))) {
+    const [[d, k], [r, k2]] = p.split(">").map((x) => x.split("|"));
+    const f = res?.days?.[`${d}~${r}~${k}`]?.fl?.find((x) => x.k === k2);
+    const ok = f && !f.gone && f.p != null;
+    out.push(`<button class="wc" data-act="pair" data-w="${esc(w.id)}" data-d="${esc(d)}" data-r="${esc(r)}"><span class="ic">${IC.bell(16)}</span>
+      <span><div class="t1">${esc(k)} + ${esc(k2)} · ${esc(fmtShort(d))}–${esc(fmtShort(r))}</div><div class="t2 ${f ? (ok ? "ok" : "out") : ""} num">${f ? esc(ok ? money(f.p) : t(f.low == null ? "badgeNoPrice" : "badgeGone")) : "…"}</div></span></button>`);
+  }
+  return out.length ? `<div class="wchips">${out.join("")}</div>` : "";
+}
+
+function pickSel(w, res) {
+  const ods = outDays(w), sel = S.sel[w.id] || {};
+  let d = sel.d, r = sel.r;
+  if (!ods.includes(d)) {
+    d = S.focus.w === w.id && ods.includes(S.focus.d) ? S.focus.d
+      : ods.find((x) => Object.keys(res?.days || {}).some((lk) => lk.split("~")[0] === x)) || ods[0];
+    r = S.focus.w === w.id ? S.focus.r : null;
+  }
+  if (w.trip === "round") {
+    const rs = retDays(w).filter((x) => x >= d);
+    if (!rs.includes(r)) r = rs.find((x) => res?.days?.[`${d}~${x}`]) || rs[0];
+  } else r = null;
+  return (S.sel[w.id] = { d, r });
+}
+
+function tripCard(w) {
+  const res = S.status?.res?.[w.id], ods = outDays(w);
+  const kind = w.trip === "round" ? t("roundTrip") : t("oneWay");
+  const top = `<div class="pass-top">
+      <div class="pass-head"><span class="kind">${esc(kind)}</span>${w.name ? `<span class="tagname">${esc(w.name)}</span>` : ""}${w.enabled ? "" : `<span class="tag">${esc(t("paused"))}</span>`}
+        <button class="ibtn" data-act="edit" data-w="${esc(w.id)}" aria-label="${esc(t("editTrip"))}">${IC.edit(17)}</button></div>
+      <div class="route">
+        <div class="ap"><div class="code">${esc(w.from)}</div><div class="city">${esc(city(w.from))}</div></div>
+        <div class="path"><svg class="arcl" viewBox="0 0 100 34" preserveAspectRatio="none" fill="none"><path d="M2 30 Q50 -4 98 30" stroke="currentColor" stroke-width="1.6" stroke-dasharray="3 4" vector-effect="non-scaling-stroke"/></svg>
+          <span class="pl" style="${w.trip === "round" ? "" : "transform:translateX(-50%) rotate(90deg)"}">${w.trip === "round" ? svg('<path d="M7 7h11l-3-3M17 17H6l3 3"/>', 16) : IC.plane(16)}</span></div>
+        <div class="ap r"><div class="code">${esc(w.to)}</div><div class="city">${esc(city(w.to))}</div></div>
+      </div></div><div class="perf"></div>`;
+  const info = [`<div><div class="k">${esc(t("depart"))}</div><div class="v">${esc(fmtRange(w.date_from, w.date_to))}</div><div class="s">${esc(anyWin(w.time_from, w.time_to) ? t("anyTime") : `${w.time_from}–${w.time_to}`)}</div></div>`];
+  if (w.trip === "round") info.push(`<div><div class="k">${esc(t("ret"))}</div><div class="v">${esc(fmtRange(w.ret_from, w.ret_to))}</div><div class="s">${esc(anyWin(...winRet(w)) ? t("anyTime") : winRet(w).join("–"))}</div></div>`);
+  info.push(`<div><div class="k">${esc(t("target"))}</div><div class="v num">${esc(w.max_price ? money(w.max_price) : t("none"))}</div><div class="s">${esc([w.nonstop ? t("nonstop") : t("upTo1"), w.adults > 1 ? t("adultsN", { n: w.adults }) : t("adult1")].join(" · "))}</div></div>`);
+  const head = `<section class="pass" id="trip-${esc(w.id)}">${top}<div class="info">${info.join("")}</div>`;
+  if (!ods.length) return `${head}<div class="empty">${esc(t("ePast"))}</div></section>`;
+
+  const { d, r } = pickSel(w, res);
+  let body = watchChips(w, res);
+  let lkOut;
+  if (w.trip === "round") {
+    const rsAll = retDays(w);
+    body += `<div class="slabel"><span style="transform:rotate(90deg)">${IC.plane(13)}</span> ${esc(t("depart"))}</div>` + strip(w, "dep", ods, (x) => {
+      const vals = rsAll.filter((y) => y >= x).map((y) => dayPrice(res, `${x}~${y}`, winOut(w))).filter((v) => typeof v === "number");
+      return vals.length ? Math.min(...vals) : (rsAll.some((y) => y >= x && res?.days?.[`${x}~${y}`]) ? "—" : "…");
+    }, d);
+    body += `<div class="slabel"><span style="transform:rotate(-90deg)">${IC.plane(13)}</span> ${esc(t("ret"))}</div>`
+      + strip(w, "ret", rsAll.filter((y) => y >= d), (y) => dayPrice(res, `${d}~${y}`, winOut(w)), r);
+    lkOut = `${d}~${r}`;
+  } else {
+    body += `<div class="slabel"><span style="transform:rotate(90deg)">${IC.plane(13)}</span> ${esc(t("depart"))}</div>` + strip(w, "dep", ods, (x) => dayPrice(res, x, winOut(w)), d);
+    lkOut = d;
+  }
+  const round = w.trip === "round";
+  body += `<div class="lh"><div><h3>${esc(t(round ? "outTitle" : "oneTitle"))}</h3><small>${esc(t(round ? "outCap" : "oneCap"))}</small></div>
+    <div class="seg" role="group"><button data-act="sort" data-v="time" aria-pressed="${S.sort === "time"}">${esc(t("sortTime"))}</button><button data-act="sort" data-v="price" aria-pressed="${S.sort === "price"}">${esc(t("sortPrice"))}</button></div></div>
+    <div class="filters"><button class="fchip" data-act="win" data-w="${esc(w.id)}" aria-pressed="${!!S.onlyWin[w.id]}">${IC.clock(14)} ${esc(t("myTimes"))}</button></div>`;
+  const outList = res?.days?.[lkOut]?.fl;
+  body += listBlock(w, lkOut, round ? "out" : "one", outList);
+
+  if (round && r) {
+    const mine = outPins(w).filter(([x]) => x === d).map(([, k]) => k);
+    if (!mine.length) body += `<div class="hintbox"><span class="ic">${IC.bell(17)}</span><span>${esc(t("pickOut"))}</span></div>`;
+    for (const k of mine) {
+      const of = outList?.find((x) => x.k === k);
+      const lk = `${d}~${r}~${k}`;
+      body += `<div class="ret"><div class="rh"><div class="al" style="${alStyle(alCode(k))}">${esc(alCode(k))}</div>
+        <div><b>${esc(t("retTitle", { d: fmtDay(r) }))}</b><small>${esc(t("retCap", { k, dep: of ? of.dep : "" }))}</small></div></div>
+        ${listBlock(w, lk, "ret", res?.days?.[lk]?.fl)}</div>`;
+    }
+  }
+  const dd = res?.days?.[lkOut];
+  const gUrl = res?.url?.[lkOut], okUrl = /^https:\/\/www\.google\.com\/travel\/flights/.test(gUrl || "");
+  body += `<div class="pf"><span>${dd ? esc(t("checked", { ago: ago(dd.checked) })) : ""}</span>${okUrl ? `<a class="gf" href="${esc(gUrl)}" target="_blank" rel="noopener">${esc(t("google"))} ${IC.ext(14)}</a>` : ""}</div>`;
+  return `${head}${body}</section>`;
+}
+
+function emptyCard() {
+  return `<section class="heroCard">
+    <svg width="148" height="96" viewBox="0 0 148 96" fill="none" aria-hidden="true" style="margin:0 auto">
+      <circle cx="74" cy="50" r="44" fill="var(--brand-soft)"/>
+      <path d="M22 70c6-14 22-20 34-14 4-10 16-14 26-8 10-4 22 2 24 12 10 0 16 8 14 16H22z" fill="var(--card)" stroke="var(--line-2)" stroke-width="1.5"/>
+      <path d="M30 40 C60 10 100 12 128 28" stroke="var(--brand)" stroke-width="1.6" stroke-dasharray="3 5" stroke-linecap="round"/>
+      <g transform="translate(118 18) rotate(35)" fill="var(--brand)"><path d="M10.5 6 7 4V1.2a1 1 0 0 0-2 0V4L1.5 6v1.2L5 6.2v2.5L3.8 9.6v1l2.2-.6 2.2.6v-1L7 8.7V6.2l3.5 1z" transform="scale(1.9) translate(-6 -5)"/></g>
+    </svg>
+    <h2>${esc(t("noTrips"))}</h2><p>${esc(t("noTripsMsg"))}</p>
+    <button class="btn primary block" data-act="add">${IC.plus(18)} ${esc(t("addTrip"))}</button></section>`;
+}
+
+function notifCard() {
+  return `<div class="sect">${esc(t("notifSect"))}</div>
+  <section class="card cpad">
+    <div class="ch"><span class="ic">${IC.bell(20)}</span><div><b>${esc(t("notif"))}</b><small>${esc(t("notifSub"))}</small></div></div>
+    <ol class="steps"><li>${esc(t("step1"))}</li><li>${esc(t("step2"))}</li><li>${esc(t("step3"))}</li></ol>
+    <div class="topic"><code id="topicName">${esc(T.main)}</code><button class="btn" data-act="copy">${esc(t("copy"))}</button></div>
+    <button class="btn block" data-act="test">${IC.bolt(16)} ${esc(t("test"))}</button>
+  </section>
+  <section class="card cpad" style="margin-top:12px"><details class="tips">
+    <summary class="ch"><span class="ic">${IC.bolt(20)}</span><div><b>${esc(t("fast"))}</b><small>${esc(t("fastSub"))}</small></div><span class="chev">${IC.chev(18)}</span></summary>
+    <ol class="steps"><li>${esc(t("fast1"))}</li><li>${esc(t("fast2"))}</li><li>${esc(t("fast3"))}</li></ol>
+  </details></section>`;
+}
 function settingsCard() {
   const c = S.draft;
   const curOpts = ["SGD", "TWD", "USD", "MYR", "HKD", "JPY"].map((x) => `<option ${x === c.currency ? "selected" : ""}>${x}</option>`).join("");
   const ivOpts = [[30, "min30"], [60, "h1"], [120, "h2"], [180, "h3"]].map(([v, k]) => `<option value="${v}" ${v === c.interval ? "selected" : ""}>${esc(t(k))}</option>`).join("");
   const lgOpts = [["en", "English"], ["zh", "中文"]].map(([v, l]) => `<option value="${v}" ${v === c.lang ? "selected" : ""}>${l}</option>`).join("");
-  return `<div class="sect">${esc(t("notif"))}</div>
-  <section class="card"><div class="dlg-b">
-    <div>${esc(t("notifHow"))}</div>
-    <ol class="steps"><li>${esc(t("step1"))}</li><li>${esc(t("step2"))}</li><li>${esc(t("step3"))}</li></ol>
-    <code class="topic" id="topicName">${esc(T.main)}</code>
-    <div class="acts" style="margin-top:10px"><button class="btn" data-act="copy">${esc(t("copy"))}</button><button class="btn" data-act="test">${esc(t("test"))}</button></div>
-  </div></section>
-  <div class="sect">${esc(t("settings"))}</div>
+  return `<div class="sect">${esc(t("settings"))}</div>
   <section class="card">
-    <div class="row"><div class="lab">${esc(t("currency"))}<small>${esc(t("currencyHint"))}</small></div><select class="inp" data-act="currency" aria-label="${esc(t("currency"))}">${curOpts}</select></div>
-    <div class="row"><div class="lab">${esc(t("every"))}</div><select class="inp" data-act="interval" aria-label="${esc(t("every"))}">${ivOpts}</select></div>
-    <div class="row"><div class="lab">${esc(t("notifLang"))}</div><select class="inp" data-act="nlang" aria-label="${esc(t("notifLang"))}">${lgOpts}</select></div>
+    <div class="row"><div class="lab"><span class="ic">${IC.coin(17)}</span><div>${esc(t("currency"))}<small>${esc(t("currencyHint"))}</small></div></div><select class="inp" data-act="currency" aria-label="${esc(t("currency"))}">${curOpts}</select></div>
+    <div class="row"><div class="lab"><span class="ic">${IC.clock(17)}</span><div>${esc(t("every"))}</div></div><select class="inp" data-act="interval" aria-label="${esc(t("every"))}">${ivOpts}</select></div>
+    <div class="row"><div class="lab"><span class="ic">${IC.globe(17)}</span><div>${esc(t("notifLang"))}</div></div><select class="inp" data-act="nlang" aria-label="${esc(t("notifLang"))}">${lgOpts}</select></div>
   </section>`;
 }
 function eventsCard() {
   const ev = S.status?.events || [];
   return `<div class="sect">${esc(t("recent"))}</div><section class="card">${ev.length ? ev.slice(0, 10).map((e) =>
-    `<div class="ev"><time>${esc(fmtDay(e.t.slice(0, 10)))} ${esc(clock(e.t))}</time><div class="et">${esc(e.title)}</div><div class="em">${esc(e.msg)}</div></div>`).join("")
-    : `<div class="empty" style="border:0">${esc(t("noRecent"))}</div>`}</section>`;
+    `<div class="ev"><span class="d"></span><div><time>${esc(fmtShort(e.t.slice(0, 10)))} · ${esc(clock(e.t))}</time><div class="et">${esc(e.title)}</div><div class="em">${esc(e.msg)}</div></div></div>`).join("")
+    : `<div class="empty">${esc(t("noRecent"))}</div>`}</section>`;
 }
 
 function render() {
   applyI18n();
   renderPill();
   const app = $("#app");
-  if (!T) { app.innerHTML = `<section class="card hero"><div style="font-size:40px">🔑</div><h2>${esc(t("noKey"))}</h2><p>${esc(t("noKeyMsg"))}</p></section>`; return; }
+  if (!T) {
+    app.innerHTML = `<section class="heroCard"><div style="color:var(--brand);display:grid;place-items:center">${svg('<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/>', 44)}</div><h2>${esc(t("noKey"))}</h2><p>${esc(t("noKeyMsg"))}</p></section>`;
+    return;
+  }
   if (!S.draft) return;
   const scroll = {};
-  app.querySelectorAll(".dates").forEach((el) => { scroll[el.dataset.w] = el.scrollLeft; });
+  app.querySelectorAll(".strip, .wchips").forEach((el, i) => { scroll[el.dataset.s || `c${i}`] = el.scrollLeft; });
   const ws = S.draft.watches;
-  const trips = ws.length ? ws.map(tripCard).join("") + `<button class="btn block" data-act="add">＋ ${esc(t("addTrip"))}</button>`
-    : `<section class="card hero"><div style="font-size:40px">🛫</div><h2>${esc(t("noTrips"))}</h2><p>${esc(t("noTripsMsg"))}</p>
-       <button class="btn primary block" data-act="add">${esc(t("addTrip"))}</button></section>`;
-  const hint = ws.length && !ws.some((w) => w.pinned.length) ? `<p class="hint" style="margin:10px 4px 0">${esc(t("watchHint"))}</p>` : "";
-  app.innerHTML = trips + hint + settingsCard() + eventsCard();
-  app.querySelectorAll(".dates").forEach((el) => {
-    if (scroll[el.dataset.w] != null) el.scrollLeft = scroll[el.dataset.w];
-    else { const on = el.querySelector('[aria-pressed="true"]'); if (on) el.scrollLeft = on.offsetLeft - 16; }
+  const trips = ws.length ? ws.map(tripCard).join("") + `<button class="add" data-act="add">${IC.plus(18)} ${esc(t("addTrip"))}</button>`
+    : emptyCard();
+  const hint = ws.length && !ws.some((w) => w.pinned.length) ? `<p class="note" style="margin:10px 4px 0;padding:0">${esc(t("watchHint"))}</p>` : "";
+  app.innerHTML = trips + hint + notifCard() + settingsCard() + eventsCard();
+  app.querySelectorAll(".strip").forEach((el) => {
+    if (scroll[el.dataset.s] != null) el.scrollLeft = scroll[el.dataset.s];
+    else { const on = el.querySelector('[aria-pressed="true"]'); if (on) el.scrollLeft = Math.max(0, on.offsetLeft - 18); }
   });
-  if (S.focus.w && !render.focused) {
+  if (S.focus.w && !render.focused && S.status) {
     const el = document.getElementById(`trip-${S.focus.w}`);
-    if (el && S.status) { render.focused = true; el.scrollIntoView({ block: "start" }); }
+    if (el) { render.focused = true; el.scrollIntoView({ block: "start" }); }
   }
 }
 
@@ -622,23 +924,29 @@ document.querySelectorAll("[data-lang]").forEach((b) => b.addEventListener("clic
   LANG = b.dataset.lang; store.set("fw-lang", LANG); render();
 }));
 const findW = (id) => S.draft.watches.find((w) => w.id === id);
+function togglePin(w, key) {
+  const before = w.pinned.slice(), i = w.pinned.indexOf(key);
+  if (i >= 0) w.pinned = w.pinned.filter((p) => p !== key && !p.startsWith(key + ">")); // 取消去程也一併取消它的回程
+  else w.pinned.push(key);
+  if (totalQueries(S.draft.watches) > MAX_QUERIES) { w.pinned = before; toast(t("eBudget")); return; }
+  saveSoon(); render();
+}
 
 $("#app").addEventListener("click", async (e) => {
   const el = e.target.closest("[data-act]");
-  if (!el || el.tagName === "SELECT" || el.type === "checkbox") return;
-  const act = el.dataset.act;
-  if (act === "pin") {
-    const w = findW(el.dataset.w), k = el.dataset.key, i = w.pinned.indexOf(k);
-    if (i >= 0) w.pinned.splice(i, 1); else w.pinned.push(k);
-    el.setAttribute("aria-pressed", String(i < 0));
-    saveSoon(); render();
-  } else if (act === "day") { S.sel[el.dataset.w] = el.dataset.d; render(); }
+  if (!el || el.tagName === "SELECT") return;
+  const act = el.dataset.act, w = el.dataset.w ? findW(el.dataset.w) : null;
+  if (act === "pin") togglePin(w, el.dataset.key);
+  else if (act === "dep") { S.sel[w.id] = { d: el.dataset.d, r: S.sel[w.id]?.r }; render(); }
+  else if (act === "ret") { S.sel[w.id] = { d: S.sel[w.id].d, r: el.dataset.d }; render(); }
+  else if (act === "pair") { S.sel[w.id] = { d: el.dataset.d, r: el.dataset.r }; render(); }
   else if (act === "sort") { S.sort = el.dataset.v; store.set("fw-sort", S.sort); render(); }
-  else if (act === "edit") openEditor(findW(el.dataset.w));
+  else if (act === "win") { S.onlyWin[w.id] = !S.onlyWin[w.id]; render(); }
+  else if (act === "edit") openEditor(w);
   else if (act === "add") openEditor(null);
   else if (act === "copy") {
     try { await navigator.clipboard.writeText(T.main); toast(t("copied")); }
-    catch { const r = document.createRange(); r.selectNodeContents($("#topicName")); getSelection().removeAllRanges(); getSelection().addRange(r); }
+    catch { const rg = document.createRange(); rg.selectNodeContents($("#topicName")); getSelection().removeAllRanges(); getSelection().addRange(rg); }
   } else if (act === "test") {
     try {
       const r = await fetch(NTFY, { method: "POST", body: JSON.stringify({ topic: T.main, title: t("testTitle"), message: t("testMsg"), tags: ["white_check_mark"] }) });
@@ -648,8 +956,7 @@ $("#app").addEventListener("click", async (e) => {
 });
 $("#app").addEventListener("change", (e) => {
   const el = e.target, act = el.dataset.act;
-  if (act === "win") { S.onlyWin[el.dataset.w] = el.checked; render(); }
-  else if (act === "currency") {
+  if (act === "currency") {
     if (!confirm(t("confirmCur"))) { el.value = S.draft.currency; return; }
     S.draft.currency = el.value; save();
   } else if (act === "interval") { S.draft.interval = Number(el.value); save(); }
@@ -658,70 +965,123 @@ $("#app").addEventListener("change", (e) => {
 
 // ---------- 編輯行程 ----------
 const dlg = $("#dlg");
-let editing = null;
-const QUICK = ["SIN", "TPE", "KHH"];
+let editing = null, fTrip = "round", fAdults = 1;
+const QUICK = ["SIN", "TPE", "KHH", "TSA", "HKG", "KUL"];
 const WINS = [["anyTime", "00:00", "23:59"], ["morning", "06:00", "12:00"], ["afternoon", "12:00", "18:00"], ["evening", "18:00", "23:59"]];
-function fillSelects() {
-  $("#fAdults").innerHTML = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `<option>${n}</option>`).join("");
+function fillEditor() {
+  applyI18n();
   $("#fSeat").innerHTML = ["economy", "premium-economy", "business", "first"].map((s) => `<option value="${s}">${esc(t(s))}</option>`).join("");
-  $("#fQuick").innerHTML = QUICK.map((c) => `<button type="button" data-ap="${c}">${c}</button>`).join("");
-  $("#fWinQuick").innerHTML = WINS.map(([k, a, b]) => `<button type="button" data-t0="${a}" data-t1="${b}">${esc(t(k))}</button>`).join("");
-  $("#fMaxLbl").textContent = t("fMax", { c: S.draft.currency });
+  $("#fQuick").innerHTML = QUICK.map((c) => `<button type="button" data-ap="${c}">${c} · ${esc(city(c))}</button>`).join("");
+  document.querySelectorAll("[data-win]").forEach((box) => {
+    box.innerHTML = WINS.map(([k, a, b]) => `<button type="button" data-t0="${a}" data-t1="${b}">${esc(t(k))}</button>`).join("");
+  });
+  $("#fMaxLbl").textContent = t("fMax");
+  $("#fMaxSym").textContent = SYM[S.draft.currency] || S.draft.currency;
 }
+function setTrip(v) {
+  fTrip = v;
+  document.querySelectorAll("[data-trip]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.trip === v)));
+  $("#retGrp").style.display = v === "round" ? "" : "none";
+  $("#fReturn").style.display = editing && v === "oneway" ? "" : "none";
+  updateMeter();
+}
+function cityLabels() { $("#fFromCity").textContent = city($("#fFrom").value.toUpperCase()); $("#fToCity").textContent = city($("#fTo").value.toUpperCase()); }
 let lastAp = "fTo";
-["fFrom", "fTo"].forEach((id) => $("#" + id).addEventListener("focus", () => { lastAp = id; }));
-$("#fQuick").addEventListener("click", (e) => { const b = e.target.closest("[data-ap]"); if (b) { $("#" + lastAp).value = b.dataset.ap; lastAp = lastAp === "fFrom" ? "fTo" : "fFrom"; } });
-$("#fWinQuick").addEventListener("click", (e) => { const b = e.target.closest("[data-t0]"); if (b) { $("#fT0").value = b.dataset.t0; $("#fT1").value = b.dataset.t1; } });
-$("#fSwap").addEventListener("click", () => { const a = $("#fFrom").value; $("#fFrom").value = $("#fTo").value; $("#fTo").value = a; });
+["fFrom", "fTo"].forEach((id) => {
+  $("#" + id).addEventListener("focus", () => { lastAp = id; });
+  $("#" + id).addEventListener("input", cityLabels);
+});
+$("#fTrip").addEventListener("click", (e) => { const b = e.target.closest("[data-trip]"); if (b) setTrip(b.dataset.trip); });
+$("#fQuick").addEventListener("click", (e) => {
+  const b = e.target.closest("[data-ap]"); if (!b) return;
+  $("#" + lastAp).value = b.dataset.ap; lastAp = lastAp === "fFrom" ? "fTo" : "fFrom"; cityLabels();
+});
+document.querySelectorAll("[data-win]").forEach((box) => box.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-t0]"); if (!b) return;
+  $(`#${box.dataset.win}0`).value = b.dataset.t0; $(`#${box.dataset.win}1`).value = b.dataset.t1;
+}));
+$("#fSwap").addEventListener("click", () => { const a = $("#fFrom").value; $("#fFrom").value = $("#fTo").value; $("#fTo").value = a; cityLabels(); });
+dlg.querySelectorAll("[data-step]").forEach((b) => b.addEventListener("click", () => {
+  fAdults = Math.min(9, Math.max(1, fAdults + Number(b.dataset.step))); $("#fAdults").textContent = fAdults;
+}));
 dlg.querySelector("[data-close]").addEventListener("click", () => dlg.close());
 $("#tripForm").addEventListener("submit", (e) => { e.preventDefault(); $("#fSave").click(); }); // 鍵盤按 Enter 也走儲存
+["fD0", "fD1", "fR0", "fR1", "fEnabled"].forEach((id) => $("#" + id).addEventListener("change", updateMeter));
 
 function openEditor(w, preset) {
   editing = w;
-  applyI18n(); fillSelects();
+  fillEditor();
   const d0 = addDays(todaySG(), 14);
-  const v = w || preset || { name: "", from: "SIN", to: "TPE", date_from: d0, date_to: addDays(d0, 2), time_from: "00:00", time_to: "23:59",
+  const v = w || preset || { name: "", trip: "round", from: "SIN", to: "TPE", date_from: d0, date_to: addDays(d0, 2),
+    time_from: "00:00", time_to: "23:59", ret_from: addDays(d0, 7), ret_to: addDays(d0, 9), ret_time_from: "00:00", ret_time_to: "23:59",
     nonstop: true, max_price: null, adults: 1, seat: "economy", enabled: true };
   $("#dlgTitle").textContent = t(w ? "editTrip" : "newTrip");
-  $("#fName").value = v.name || ""; $("#fFrom").value = v.from; $("#fTo").value = v.to;
-  $("#fD0").value = v.date_from; $("#fD1").value = v.date_to; $("#fD0").min = $("#fD1").min = todaySG();
-  $("#fT0").value = v.time_from; $("#fT1").value = v.time_to;
-  $("#fMax").value = v.max_price || ""; $("#fAdults").value = String(v.adults); $("#fSeat").value = v.seat;
+  $("#fName").value = v.name || ""; $("#fFrom").value = v.from; $("#fTo").value = v.to; cityLabels();
+  $("#fD0").value = v.date_from; $("#fD1").value = v.date_to; $("#fT0").value = v.time_from; $("#fT1").value = v.time_to;
+  $("#fR0").value = v.ret_from || addDays(v.date_to, 7); $("#fR1").value = v.ret_to || addDays(v.date_to, 9);
+  $("#fRT0").value = v.ret_time_from || "00:00"; $("#fRT1").value = v.ret_time_to || "23:59";
+  ["fD0", "fD1", "fR0", "fR1"].forEach((id) => { $("#" + id).min = todaySG(); });
+  $("#fMax").value = v.max_price || ""; fAdults = v.adults || 1; $("#fAdults").textContent = fAdults; $("#fSeat").value = v.seat;
   $("#fNonstop").checked = v.nonstop; $("#fEnabled").checked = v.enabled;
   $("#fErr").textContent = "";
+  $("#fDelete").style.display = w ? "" : "none";
+  setTrip(v.trip === "round" ? "round" : "oneway");
   $("#fMore").style.display = w ? "" : "none";
   dlg.showModal();
+  dlg.querySelector(".sheet-b").scrollTop = 0;
 }
-function readForm() {
+function formWatch() {
+  const round = fTrip === "round";
   const w = {
-    id: editing?.id || "w" + Math.random().toString(36).slice(2, 8),
-    name: $("#fName").value.trim().slice(0, 24),
+    id: editing?.id || "w" + Math.random().toString(36).slice(2, 8), name: $("#fName").value.trim().slice(0, 24), trip: fTrip,
     from: $("#fFrom").value.trim().toUpperCase(), to: $("#fTo").value.trim().toUpperCase(),
     date_from: $("#fD0").value, date_to: $("#fD1").value, time_from: $("#fT0").value, time_to: $("#fT1").value,
+    ret_from: round ? $("#fR0").value : null, ret_to: round ? $("#fR1").value : null,
+    ret_time_from: round ? $("#fRT0").value : null, ret_time_to: round ? $("#fRT1").value : null,
     nonstop: $("#fNonstop").checked, max_price: Number($("#fMax").value) > 0 ? Math.round(Number($("#fMax").value)) : null,
-    adults: Number($("#fAdults").value), seat: $("#fSeat").value, enabled: $("#fEnabled").checked,
-    pinned: editing ? editing.pinned.slice() : [],
+    adults: fAdults, seat: $("#fSeat").value, enabled: $("#fEnabled").checked, pinned: editing ? editing.pinned.slice() : [],
   };
-  if (!/^[A-Z]{3}$/.test(w.from) || !/^[A-Z]{3}$/.test(w.to)) return [null, t("eAirport")];
-  if (w.from === w.to) return [null, t("eSame")];
-  if (!w.date_from || !w.date_to) return [null, t("eDates")];
-  if (w.date_to < w.date_from) return [null, t("eOrder")];
-  if (daysBetween(w.date_from, w.date_to) > 30) return [null, t("eSpan")];
-  if (w.date_to < todaySG()) return [null, t("ePast")];
-  if (!w.time_from || !w.time_to) return [null, t("eTime")];
-  if (editing && (editing.from !== w.from || editing.to !== w.to)) w.pinned = [];
-  w.pinned = w.pinned.filter((p) => { const d = p.split("|")[0]; return d >= w.date_from && d <= w.date_to; });
-  const others = S.draft.watches.filter((x) => x.id !== w.id && x.enabled).reduce((n, x) => n + watchDays(x).length, 0);
-  const total = others + (w.enabled ? watchDays(w).length : 0);
-  if (total > MAX_DATES) return [null, t("eTotal", { n: total, max: MAX_DATES })];
-  return [w, null];
+  if (editing && (editing.from !== w.from || editing.to !== w.to || editing.trip !== w.trip)) w.pinned = [];
+  const inOut = (d) => d >= w.date_from && d <= w.date_to, inRet = (d) => round && d >= w.ret_from && d <= w.ret_to;
+  w.pinned = w.pinned.filter((p) => {
+    const [[d], ret] = p.split(">").map((x) => x.split("|"));
+    return inOut(d) && (!ret || inRet(ret[0]));
+  });
+  return w;
+}
+function searchTotal(w) {
+  const ok = w.date_from && w.date_to && w.date_from <= w.date_to && (w.trip !== "round" || (w.ret_from && w.ret_to && w.ret_from <= w.ret_to));
+  return S.draft.watches.filter((x) => x.id !== w.id).reduce((n, x) => n + queryCount(x), 0) + (ok ? queryCount(w) : 0);
+}
+function updateMeter() {
+  if (!dlg.open && !editing && !$("#fD0").value) return;
+  const n = searchTotal(formWatch()), box = $("#fMeter");
+  box.classList.toggle("over", n > MAX_QUERIES);
+  box.querySelector("i").style.width = Math.min(100, (n / MAX_QUERIES) * 100) + "%";
+  box.querySelector("small").textContent = t("meter", { n, max: MAX_QUERIES });
+}
+function validate(w) {
+  if (!/^[A-Z]{3}$/.test(w.from) || !/^[A-Z]{3}$/.test(w.to)) return t("eAirport");
+  if (w.from === w.to) return t("eSame");
+  const ranges = [[w.date_from, w.date_to]].concat(w.trip === "round" ? [[w.ret_from, w.ret_to]] : []);
+  for (const [a, b] of ranges) {
+    if (!a || !b) return t("eDates");
+    if (b < a) return t("eOrder");
+    if (daysBetween(a, b) > 30) return t("eSpan");
+  }
+  if (w.date_to < todaySG()) return t("ePast");
+  if (w.trip === "round" && w.ret_to < w.date_from) return t("eRetBefore");
+  if (!w.time_from || !w.time_to || (w.trip === "round" && (!w.ret_time_from || !w.ret_time_to))) return t("eTime");
+  const n = searchTotal(w);
+  if (n > MAX_QUERIES) return t("eQueries", { n, max: MAX_QUERIES });
+  return null;
 }
 $("#fSave").addEventListener("click", () => {
-  const [w, err] = readForm();
-  if (err) { $("#fErr").textContent = err; $("#tripForm").parentElement.scrollTop = 0; return; }
+  const w = formWatch(), err = validate(w);
+  if (err) { $("#fErr").textContent = err; dlg.querySelector(".sheet-b").scrollTop = 0; dlg.scrollTop = 0; return; }
   const i = S.draft.watches.findIndex((x) => x.id === w.id);
   if (i >= 0) S.draft.watches[i] = w; else S.draft.watches.push(w);
-  S.sel[w.id] = null; S.focus = { w: w.id, d: null }; render.focused = false;
+  S.sel[w.id] = null; S.focus = { w: w.id, d: null, r: null }; render.focused = false;
   dlg.close(); save();
 });
 $("#fDelete").addEventListener("click", () => {
