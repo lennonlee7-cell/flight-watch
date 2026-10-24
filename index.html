@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Flight Watch">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Flight Watch</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a84ff'/%3E%3Ctext x='50' y='70' font-size='58' text-anchor='middle'%3E%E2%9C%88%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a84ff'/%3E%3Ctext x='50' y='70' font-size='58' text-anchor='middle'%3E%E2%9C%88%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #f2f2f7; --card: #ffffff; --ink: #1c1c1e; --sub: #6e6e73; --faint: #aeaeb2;
+  --line: #e5e5ea; --fill: #f2f2f7; --accent: #0a6cff; --accent-soft: #e6f0ff; --on-accent: #ffffff;
+  --good: #1a7f37; --good-soft: #e3f5e8; --bad: #c4161c; --bad-soft: #fde8e8;
+  --warn: #9a5b00; --warn-soft: #fff3dc; --shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #000000; --card: #1c1c1e; --ink: #f2f2f7; --sub: #a1a1a6; --faint: #636366;
+    --line: #2c2c2e; --fill: #2c2c2e; --accent: #4a9eff; --accent-soft: #10284a; --on-accent: #ffffff;
+    --good: #4cd17a; --good-soft: #0f2e1b; --bad: #ff6b6b; --bad-soft: #3a1416;
+    --warn: #ffb340; --warn-soft: #362606; --shadow: none; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #000000; --card: #1c1c1e; --ink: #f2f2f7; --sub: #a1a1a6; --faint: #636366;
+  --line: #2c2c2e; --fill: #2c2c2e; --accent: #4a9eff; --accent-soft: #10284a; --on-accent: #ffffff;
+  --good: #4cd17a; --good-soft: #0f2e1b; --bad: #ff6b6b; --bad-soft: #3a1416;
+  --warn: #ffb340; --warn-soft: #362606; --shadow: none; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.4 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  padding: env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 32px);
+}
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.wrap { max-width: 560px; margin: 0 auto; padding: 0 16px; }
+header.top { display: flex; align-items: center; justify-content: space-between; padding: 14px 0 6px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 22px; letter-spacing: -.01em; }
+.logo { width: 34px; height: 34px; border-radius: 9px; background: var(--accent); display: grid; place-items: center; color: #fff; font-size: 18px; }
+.seg { display: inline-flex; background: var(--fill); border-radius: 9px; padding: 2px; }
+.seg button { border: 0; background: transparent; padding: 5px 11px; border-radius: 7px; font-size: 14px; color: var(--sub); }
+.seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.pill { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--sub); padding: 4px 0 14px; }
+.pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); margin-top: 6px; flex: none; }
+.pill.warn .dot { background: var(--warn); } .pill.bad .dot { background: var(--bad); } .pill.busy .dot { background: var(--accent); animation: pulse 1.2s infinite; }
+@keyframes pulse { 50% { opacity: .3; } }
+.notice { border-radius: 12px; padding: 10px 12px; font-size: 14px; margin: 0 0 12px; }
+.notice.warn { background: var(--warn-soft); color: var(--warn); }
+.notice.bad { background: var(--bad-soft); color: var(--bad); }
+.card { background: var(--card); border-radius: 16px; box-shadow: var(--shadow); margin: 0 0 16px; overflow: hidden; }
+.card-h { padding: 14px 16px 10px; display: flex; gap: 12px; align-items: flex-start; }
+.card-h .ttl { flex: 1; min-width: 0; }
+.route { font-size: 20px; font-weight: 700; letter-spacing: -.01em; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.route .nm { font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 999px; }
+.meta { font-size: 14px; color: var(--sub); margin-top: 3px; }
+.btn { border: 0; border-radius: 10px; padding: 8px 14px; background: var(--fill); font-weight: 600; font-size: 15px; }
+.btn.primary { background: var(--accent); color: var(--on-accent); }
+.btn.danger { background: var(--bad-soft); color: var(--bad); }
+.btn.ghost { background: transparent; color: var(--accent); padding: 8px 4px; }
+.btn.block { width: 100%; padding: 13px; font-size: 16px; }
+.btn:disabled { opacity: .5; }
+.tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--fill); color: var(--sub); }
+.pins { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 10px; scrollbar-width: none; }
+.pins::-webkit-scrollbar, .dates::-webkit-scrollbar { display: none; }
+.pinchip { flex: none; border: 1px solid var(--line); background: var(--card); border-radius: 10px; padding: 6px 10px; font-size: 13px; text-align: left; }
+.pinchip b { display: block; font-size: 14px; }
+.pinchip.ok b { color: var(--good); } .pinchip.out b { color: var(--bad); }
+.dates { display: flex; gap: 8px; overflow-x: auto; padding: 4px 16px 12px; scroll-snap-type: x proximity; scrollbar-width: none; }
+.day { flex: none; scroll-snap-align: start; min-width: 74px; border: 1px solid var(--line); background: var(--card); border-radius: 12px; padding: 7px 10px; text-align: center; }
+.day .d1 { font-size: 13px; color: var(--sub); } .day .d2 { font-size: 15px; font-weight: 700; margin-top: 1px; }
+.day[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.day[aria-pressed="true"] .d1 { color: inherit; opacity: .85; }
+.tools { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 16px 8px; font-size: 14px; color: var(--sub); }
+.tools label { display: flex; align-items: center; gap: 6px; }
+ul.list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.fl { display: flex; align-items: center; gap: 12px; padding: 11px 16px; border-bottom: 1px solid var(--line); }
+.fl:last-child { border-bottom: 0; }
+.fl.out .fl-main, .fl.out .fl-price { opacity: .55; }
+.pin { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--faint); background: transparent; display: grid; place-items: center; color: transparent; font-weight: 800; font-size: 15px; padding: 0; }
+.pin[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.fl-main { flex: 1; min-width: 0; }
+.fl-times { font-size: 17px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.fl-times sup { font-size: 11px; color: var(--warn); font-weight: 700; margin-left: 1px; }
+.fl-times .arw { color: var(--faint); font-weight: 400; margin: 0 3px; }
+.fl-sub { font-size: 13px; color: var(--sub); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.badges { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
+.badges:empty { display: none; }
+.b { font-size: 11.5px; font-weight: 700; padding: 1px 6px; border-radius: 5px; }
+.b.new { background: var(--accent-soft); color: var(--accent); }
+.b.good { background: var(--good-soft); color: var(--good); }
+.b.bad { background: var(--bad-soft); color: var(--bad); }
+.fl-price { text-align: right; font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums; flex: none; }
+.fl-price small { display: block; font-size: 12px; font-weight: 500; color: var(--sub); }
+.fl.gone .fl-price .v { text-decoration: line-through; color: var(--faint); }
+.empty { padding: 18px 16px; color: var(--sub); font-size: 15px; text-align: center; border-top: 1px solid var(--line); }
+.card-f { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 16px 12px; border-top: 1px solid var(--line); font-size: 13px; color: var(--sub); }
+.card-f a { color: var(--accent); font-weight: 600; font-size: 15px; text-decoration: none; }
+.hero { padding: 26px 20px; text-align: center; }
+.hero h2 { margin: 6px 0 6px; font-size: 20px; }
+.hero p { margin: 0 0 16px; color: var(--sub); font-size: 15px; }
+.sect { font-size: 13px; font-weight: 600; color: var(--sub); text-transform: uppercase; letter-spacing: .04em; margin: 22px 4px 8px; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.row:last-child { border-bottom: 0; }
+.row .lab { font-size: 16px; } .row .lab small { display: block; color: var(--sub); font-size: 13px; }
+select.inp, input.inp { border: 1px solid var(--line); background: var(--fill); border-radius: 10px; padding: 8px 10px; min-height: 40px; width: 100%; }
+.row select.inp { width: auto; max-width: 52%; }
+code.topic { font: 600 14px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--fill); padding: 6px 8px; border-radius: 8px; word-break: break-all; display: block; margin-top: 6px; user-select: all; }
+ol.steps { margin: 8px 0 0; padding-left: 20px; color: var(--sub); font-size: 14px; }
+ol.steps li { margin: 3px 0; }
+.ev { padding: 10px 16px; border-bottom: 1px solid var(--line); }
+.ev:last-child { border-bottom: 0; }
+.ev .et { font-weight: 600; font-size: 15px; } .ev .em { white-space: pre-wrap; font-size: 13px; color: var(--sub); margin-top: 2px; }
+.ev time { font-size: 12px; color: var(--faint); }
+.foot { text-align: center; font-size: 12.5px; color: var(--sub); margin: 24px 8px 0; }
+#toast { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 20px); transform: translate(-50%, 20px); background: rgba(28,28,30,.94); color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 14px; opacity: 0; pointer-events: none; transition: .25s; width: max-content; max-width: calc(100% - 32px); text-align: center; z-index: 50; }
+#toast.on { opacity: 1; transform: translate(-50%, 0); }
+dialog { border: 0; padding: 0; border-radius: 18px; background: var(--card); color: var(--ink); width: min(520px, calc(100% - 24px)); max-height: calc(100dvh - 24px); }
+dialog::backdrop { background: rgba(0,0,0,.4); }
+.dlg-h { position: sticky; top: 0; background: var(--card); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); z-index: 1; }
+.dlg-h h3 { margin: 0; font-size: 17px; text-align: center; }
+.dlg-h .btn:first-child { justify-self: start; font-weight: 500; }
+.dlg-h .btn:last-child { justify-self: end; }
+.btn.strong { font-weight: 700; }
+.err:empty { display: none; }
+.dlg-b { padding: 12px 16px 16px; }
+.fld { margin: 0 0 14px; }
+.fld label:not(.sw), .fld .lbl { display: block; font-size: 13px; font-weight: 600; color: var(--sub); margin: 0 0 5px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.od { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: end; }
+.od input { text-transform: uppercase; font-weight: 700; font-size: 18px; text-align: center; letter-spacing: .05em; }
+.quick { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.quick button { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 3px 10px; font-size: 13px; }
+.sw { position: relative; width: 50px; height: 30px; flex: none; }
+.sw input { opacity: 0; width: 0; height: 0; position: absolute; }
+.sw span { position: absolute; inset: 0; background: var(--faint); border-radius: 999px; transition: .2s; }
+.sw span::after { content: ""; position: absolute; width: 26px; height: 26px; left: 2px; top: 2px; background: #fff; border-radius: 50%; transition: .2s; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.sw input:checked + span { background: var(--good); }
+.sw input:checked + span::after { transform: translateX(20px); }
+.sw input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.swrow { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 6px 0; }
+.err { color: var(--bad); font-size: 14px; min-height: 1.2em; margin: 4px 0 10px; }
+.acts { display: flex; gap: 10px; }
+.acts .btn { flex: 1; padding: 12px; }
+.hint { font-size: 13px; color: var(--sub); margin-top: 4px; }
+.skel { height: 14px; border-radius: 6px; background: var(--fill); margin: 8px 0; }
+@media (max-width: 360px) { .route { font-size: 18px; } .fl { gap: 10px; padding: 10px 12px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo" aria-hidden="true">✈</div><span data-i="app"></span></div>
+    <div class="seg" role="group" aria-label="Language">
+      <button data-lang="en" aria-pressed="true">EN</button><button data-lang="zh" aria-pressed="false">中文</button>
+    </div>
+  </header>
+  <div id="pill" class="pill busy"><span class="dot"></span><span></span></div>
+  <div id="notices"></div>
+  <main id="app"><div class="card"><div class="dlg-b"><div class="skel"></div><div class="skel" style="width:60%"></div><div class="skel" style="width:80%"></div></div></div></main>
+  <p class="foot" data-i="foot"></p>
+</div>
+
+<dialog id="dlg">
+  <form method="dialog" id="tripForm" novalidate>
+    <div class="dlg-h">
+      <button type="button" class="btn ghost" data-close data-i="cancel"></button>
+      <h3 id="dlgTitle"></h3>
+      <button type="button" class="btn ghost strong" id="fSave" data-i="save"></button>
+    </div>
+    <div class="dlg-b">
+      <div class="err" id="fErr" role="alert"></div>
+      <div class="fld"><label for="fName" data-i="fName"></label><input class="inp" id="fName" maxlength="24" autocomplete="off"></div>
+      <div class="fld">
+        <div class="od">
+          <div><label for="fFrom" class="lbl" data-i="fFrom"></label><input class="inp" id="fFrom" maxlength="3" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+          <button type="button" class="btn" id="fSwap" aria-label="Swap">⇄</button>
+          <div><label for="fTo" class="lbl" data-i="fTo"></label><input class="inp" id="fTo" maxlength="3" autocomplete="off" autocapitalize="characters" spellcheck="false"></div>
+        </div>
+        <div class="quick" id="fQuick"></div>
+      </div>
+      <div class="fld two">
+        <div><label for="fD0" data-i="fD0"></label><input class="inp" type="date" id="fD0"></div>
+        <div><label for="fD1" data-i="fD1"></label><input class="inp" type="date" id="fD1"></div>
+      </div>
+      <div class="fld">
+        <span class="lbl" data-i="fWin"></span>
+        <div class="two">
+          <input class="inp" type="time" id="fT0" aria-label="From">
+          <input class="inp" type="time" id="fT1" aria-label="To">
+        </div>
+        <div class="quick" id="fWinQuick"></div>
+        <div class="hint" data-i="fWinHint"></div>
+      </div>
+      <div class="fld two">
+        <div><label for="fMax" id="fMaxLbl"></label><input class="inp" type="number" inputmode="numeric" id="fMax" min="0" step="1"></div>
+        <div><label for="fAdults" data-i="fAdults"></label><select class="inp" id="fAdults"></select></div>
+      </div>
+      <div class="fld"><label for="fSeat" data-i="fSeat"></label><select class="inp" id="fSeat"></select></div>
+      <div class="fld">
+        <div class="swrow"><span data-i="fNonstop"></span><label class="sw"><input type="checkbox" id="fNonstop"><span></span></label></div>
+        <div class="swrow"><span data-i="fEnabled"></span><label class="sw"><input type="checkbox" id="fEnabled"><span></span></label></div>
+      </div>
+      <div class="acts" style="margin-top:6px" id="fMore">
+        <button type="button" class="btn" id="fReturn" data-i="addReturn"></button>
+        <button type="button" class="btn danger" id="fDelete" data-i="delete"></button>
+      </div>
+    </div>
+  </form>
+</dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+const NTFY = "https://ntfy.sh";
+const TZ = "Asia/Singapore";
+const MAX_DATES = 40;
+const SYM = { TWD: "NT$", SGD: "S$", USD: "US$", MYR: "RM", HKD: "HK$", JPY: "¥" };
+
+const I18N = {
+  en: {
+    app: "Flight Watch", foot: "Flight Watch only looks — it never books. Buy on Google Flights or the airline's website.",
+    noKey: "This link is missing its key", noKeyMsg: "Please open the full link you were sent (it ends with #k=…).",
+    connecting: "Connecting to Mac mini…", offline: "No report from Mac mini in the last 3 hours. It may be offline — your settings are kept and it will catch up.",
+    stale: "Last report from Mac mini {ago}.",
+    live: "Checked {ago} · next check {next}", waitingFirst: "Mac mini is ready · add a trip to start",
+    applying: "Saving… Mac mini applies changes within a minute", applied: "Mac mini applied your changes ✓",
+    trouble: "Having trouble reaching Google Flights — retrying automatically.",
+    rejected: "Mac mini couldn't use your last change: {err}",
+    noTrips: "No trips yet", noTripsMsg: "Add the route and dates you're thinking about. Mac mini checks every hour and notifies you about seats and price changes.",
+    addTrip: "Add a trip", editTrip: "Edit trip", newTrip: "New trip", edit: "Edit", paused: "Paused",
+    anyTime: "Any time", nonstop: "Nonstop", stop1: "1 stop", stopsN: "{n} stops", via: "via {v}", upTo1: "Up to 1 stop",
+    target: "Target {p}", adultsN: "{n} adults", sortTime: "Time", sortPrice: "Price", onlyWin: "My time only",
+    notChecked: "Not checked yet — usually within a few minutes after saving.", dayErr: "Couldn't check this date last time: {e}",
+    noFlights: "No flights listed for this date.", noneInWin: "No flights in your time window on this date.",
+    google: "Open on Google Flights ↗", checked: "Checked {ago}",
+    badgeNew: "NEW", badgeBack: "SEATS BACK", badgeGone: "SOLD OUT", badgeLow: "Lowest seen", lowWas: "low {p}",
+    watching: "Watching", watchHint: "Tap ○ to watch a flight. You'll be notified if it sells out, comes back or changes price.",
+    settings: "Settings", currency: "Currency", currencyHint: "Changing it restarts price tracking",
+    every: "Check every", min30: "30 minutes", h1: "1 hour", h2: "2 hours", h3: "3 hours",
+    notifLang: "Notification language",
+    notif: "Notifications", notifHow: "Get alerts on your iPhone:", step1: "Install “ntfy” from the App Store.",
+    step2: "Tap +, turn off “Use another server”, paste the channel name below, then Subscribe.",
+    step3: "Allow notifications when asked.", copy: "Copy", copied: "Copied", test: "Send test notification",
+    testTitle: "Test notification", testMsg: "If you can see this, notifications work.", testSent: "Test sent — check your phone",
+    recent: "Recent notifications", noRecent: "Nothing yet.",
+    cancel: "Cancel", save: "Save", delete: "Delete trip", addReturn: "Add return trip", returnName: "Return",
+    fName: "Name (optional)", fFrom: "From", fTo: "To", fD0: "Earliest date", fD1: "Latest date",
+    fWin: "Preferred departure time", fWinHint: "Flights outside this time are still listed, just greyed out.",
+    fMax: "Target price ({c}, optional)", fAdults: "Adults", fSeat: "Cabin", fNonstop: "Nonstop only", fEnabled: "Watching on",
+    economy: "Economy", "premium-economy": "Premium economy", business: "Business", first: "First",
+    morning: "Morning", afternoon: "Afternoon", evening: "Evening",
+    eAirport: "Use 3-letter airport codes, e.g. SIN, TPE.", eSame: "From and To must be different.",
+    eDates: "Choose both dates.", eOrder: "Latest date is before the earliest date.", eSpan: "Up to 31 days per trip.",
+    ePast: "These dates have already passed.", eTotal: "Too many dates in total ({n}). Limit is {max} — shorten a trip.",
+    eTime: "Choose a time window.", confirmDelete: "Delete this trip?",
+    confirmCur: "Changing currency restarts price tracking. Continue?",
+    sent: "Saved — Mac mini will pick it up within a minute", saveFail: "Couldn't save. Check your connection and try again.",
+    unsaved: "Saving your changes…",
+    justNow: "just now", minAgo: "{n} min ago", hAgo: "{n} h ago", dAgo: "{n} d ago",
+    wd: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    mon: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  },
+  zh: {
+    app: "航班小幫手", foot: "航班小幫手只負責查，不會自動訂票；請到 Google 航班或航空公司官網購買。",
+    noKey: "這個連結少了鑰匙", noKeyMsg: "請打開完整的連結（結尾是 #k=…）。",
+    connecting: "正在連線 Mac mini…", offline: "Mac mini 已超過 3 小時沒有回報，可能離線中；設定都還在，恢復後會自動補查。",
+    stale: "Mac mini 上次回報是{ago}。",
+    live: "{ago}查過 · 下次 {next}", waitingFirst: "Mac mini 已就緒 · 新增行程就開始盯",
+    applying: "儲存中…Mac mini 約 1 分鐘內套用", applied: "Mac mini 已套用你的變更 ✓",
+    trouble: "暫時連不上 Google 航班，會自動重試。",
+    rejected: "Mac mini 無法套用上次的變更：{err}",
+    noTrips: "還沒有行程", noTripsMsg: "填上想飛的航線和日期，Mac mini 每小時查一次，有票或價格變化就通知你。",
+    addTrip: "新增行程", editTrip: "編輯行程", newTrip: "新行程", edit: "編輯", paused: "已暫停",
+    anyTime: "不限時段", nonstop: "直飛", stop1: "轉機 1 次", stopsN: "轉機 {n} 次", via: "經 {v}", upTo1: "最多轉 1 次",
+    target: "目標 {p}", adultsN: "{n} 位大人", sortTime: "時間", sortPrice: "價格", onlyWin: "只看我的時段",
+    notChecked: "還沒查到這天，儲存後通常幾分鐘內就會有。", dayErr: "上次查這天失敗：{e}",
+    noFlights: "這天沒有列出航班。", noneInWin: "這天在你的時段內沒有航班。",
+    google: "在 Google 航班打開 ↗", checked: "{ago}查過",
+    badgeNew: "新", badgeBack: "有票了", badgeGone: "售完", badgeLow: "最低價", lowWas: "最低 {p}",
+    watching: "盯的航班", watchHint: "點 ○ 就會盯這班：售完、有票釋出、價格變動都會通知。",
+    settings: "設定", currency: "幣別", currencyHint: "更改後價格紀錄會重新開始",
+    every: "檢查頻率", min30: "每 30 分鐘", h1: "每 1 小時", h2: "每 2 小時", h3: "每 3 小時",
+    notifLang: "通知語言",
+    notif: "推播通知", notifHow: "在 iPhone 收通知：", step1: "到 App Store 安裝「ntfy」。",
+    step2: "點 +，不要打開「Use another server」，貼上下面的頻道名稱，按 Subscribe。",
+    step3: "跳出詢問時允許通知。", copy: "複製", copied: "已複製", test: "傳一則測試通知",
+    testTitle: "測試推播", testMsg: "看得到這則，代表推播設定成功。", testSent: "已送出，看看手機",
+    recent: "最近的通知", noRecent: "還沒有通知。",
+    cancel: "取消", save: "儲存", delete: "刪除行程", addReturn: "新增回程", returnName: "回程",
+    fName: "名稱（可不填）", fFrom: "出發", fTo: "抵達", fD0: "最早日期", fD1: "最晚日期",
+    fWin: "希望的出發時段", fWinHint: "時段外的航班仍會列出，只是變淡。",
+    fMax: "目標價（{c}，可不填）", fAdults: "大人", fSeat: "艙等", fNonstop: "只看直飛", fEnabled: "開啟監控",
+    economy: "經濟艙", "premium-economy": "豪華經濟艙", business: "商務艙", first: "頭等艙",
+    morning: "上午", afternoon: "下午", evening: "晚上",
+    eAirport: "請填 3 碼機場代號，例如 SIN、TPE。", eSame: "出發和抵達不能一樣。",
+    eDates: "請選兩個日期。", eOrder: "最晚日期早於最早日期。", eSpan: "每個行程最多 31 天。",
+    ePast: "這些日期已經過了。", eTotal: "日期加總太多（{n} 天），上限 {max} 天，請縮短行程。",
+    eTime: "請選時段。", confirmDelete: "要刪除這個行程嗎？",
+    confirmCur: "更改幣別會重新開始價格紀錄，確定嗎？",
+    sent: "已儲存，Mac mini 約 1 分鐘內套用", saveFail: "儲存失敗，請檢查網路後再試一次。",
+    unsaved: "正在儲存變更…",
+    justNow: "剛剛", minAgo: "{n} 分鐘前", hAgo: "{n} 小時前", dAgo: "{n} 天前",
+    wd: ["日", "一", "二", "三", "四", "五", "六"], mon: [],
+  },
+};
+
+// ---------- 小工具 ----------
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch {} },
+};
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const $ = (s, el = document) => el.querySelector(s);
+let LANG = store.get("fw-lang") === "zh" ? "zh" : "en";
+function t(k, vars) {
+  const s = I18N[LANG][k] ?? I18N.en[k] ?? k;
+  return typeof s === "string" ? s.replace(/\{(\w+)\}/g, (_, v) => vars?.[v] ?? "") : s;
+}
+const money = (p, cur) => (p == null ? "—" : (SYM[cur] || cur + " ") + Number(p).toLocaleString("en-US"));
+const todaySG = () => new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date());
+const addDays = (iso, n) => { const d = new Date(iso + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const daysBetween = (a, b) => Math.round((Date.parse(b + "T00:00:00Z") - Date.parse(a + "T00:00:00Z")) / 864e5);
+function dayParts(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  const wd = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+  return LANG === "zh" ? [`${m}/${d}`, `週${t("wd")[wd]}`] : [`${t("wd")[wd]}`, `${d} ${t("mon")[m - 1]}`];
+}
+const fmtDay = (iso) => { const [a, b] = dayParts(iso); return LANG === "zh" ? `${a}（${b.slice(1)}）` : `${a} ${b}`; };
+const fmtDur = (m) => { const h = Math.floor(m / 60), r = m % 60; return LANG === "zh" ? `${h} 小時${r ? ` ${r} 分` : ""}` : `${h}h${r ? ` ${r}m` : ""}`; };
+const clock = (iso) => new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: TZ }).format(new Date(iso));
+function ago(iso) {
+  const m = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 6e4));
+  if (m < 1) return t("justNow");
+  if (m < 60) return t("minAgo", { n: m });
+  if (m < 48 * 60) return t("hAgo", { n: Math.round(m / 60) });
+  return t("dAgo", { n: Math.round(m / 1440) });
+}
+const recent = (iso, h = 24) => iso && Date.now() - Date.parse(iso) < h * 36e5;
+const mins = (hhmm) => { const [h, m] = hhmm.split(":").map(Number); return h * 60 + m; };
+function inWin(dep, w) {
+  const a = mins(w.time_from), b = mins(w.time_to), x = mins(dep);
+  return a <= b ? a <= x && x <= b : x >= a || x <= b;
+}
+function watchDays(w) {
+  const start = w.date_from > todaySG() ? w.date_from : todaySG();
+  const out = [];
+  for (let d = start; d <= w.date_to; d = addDays(d, 1)) out.push(d);
+  return out;
+}
+const anyTime = (w) => w.time_from === "00:00" && w.time_to === "23:59";
+function toast(msg) {
+  const el = $("#toast");
+  el.textContent = msg; el.classList.add("on");
+  clearTimeout(toast.tm); toast.tm = setTimeout(() => el.classList.remove("on"), 2800);
+}
+
+// ---------- 鑰匙與頻道 ----------
+const hash = new URLSearchParams(location.hash.slice(1));
+let KEY = hash.get("k") || store.get("fw-key");
+if (KEY && !/^[a-f0-9]{20}$/.test(KEY)) KEY = null;
+if (KEY) store.set("fw-key", KEY);
+const T = KEY ? { main: `fw-${KEY}`, cfg: `fw-${KEY}-cfg`, st: `fw-${KEY}-st` } : null;
+
+// ---------- 狀態 ----------
+const S = {
+  status: null, draft: null, pendingV: 0, dirty: false, saving: false, loaded: false,
+  sel: {}, sort: store.get("fw-sort") || "time", onlyWin: {}, focus: { w: hash.get("w"), d: hash.get("d") }, timer: null,
+};
+const defaultCfg = () => ({ v: 0, currency: "SGD", lang: "en", interval: 60, watches: [] });
+const clone = (o) => JSON.parse(JSON.stringify(o));
+
+async function pollTopic(topic, since) {
+  const r = await fetch(`${NTFY}/${topic}/json?poll=1&since=${since}`, { cache: "no-store" });
+  if (!r.ok) throw new Error(r.status);
+  return (await r.text()).split("\n").filter(Boolean).map((l) => { try { return JSON.parse(l); } catch { return null; } })
+    .filter((m) => m && m.event === "message").sort((a, b) => a.time - b.time);
+}
+async function msgBody(m) {
+  if (m.attachment) {
+    if (m.attachment.expires && m.attachment.expires * 1000 < Date.now()) return null;
+    return (await fetch(m.attachment.url, { cache: "no-store" })).json();
+  }
+  return JSON.parse(m.message);
+}
+async function latest(topic, since) {
+  const msgs = await pollTopic(topic, since);
+  for (let i = msgs.length - 1; i >= 0; i--) {
+    try { const b = await msgBody(msgs[i]); if (b && typeof b === "object") return b; } catch {}
+  }
+  return null;
+}
+
+async function refresh() {
+  if (!T) return;
+  let st = null, pend = null;
+  try {
+    [st, pend] = await Promise.all([latest(T.st, "3h"), latest(T.cfg, "12h").catch(() => null)]);
+  } catch {
+    st = null;
+  }
+  if (st) { S.status = st; store.set("fw-last", JSON.stringify(st)); }
+  else if (!S.status) { try { S.status = JSON.parse(store.get("fw-last")); S.status && (S.status._cached = true); } catch {} }
+  const base = S.status?.cfg;
+  const engineV = base?.v || 0;
+  if (pend && pend.v > engineV && pend.v > S.pendingV && pend.v !== S.status?.cfg_error_v) S.pendingV = pend.v;
+  if (S.pendingV && engineV >= S.pendingV) { toast(t("applied")); S.pendingV = 0; }
+  if (S.pendingV && S.status?.cfg_error_v === S.pendingV) S.pendingV = 0; // Mac mini 退件，回到它手上的版本
+  if (!S.dirty && !S.saving) {
+    if (!S.pendingV) S.draft = clone(base || defaultCfg());
+    else if (!S.draft || (S.draft.v || 0) < S.pendingV) S.draft = pend && pend.v === S.pendingV ? clone(pend) : S.draft;
+  }
+  if (!S.draft) S.draft = clone(base || defaultCfg());
+  S.loaded = true;
+  render();
+  clearTimeout(refresh.tm);
+  refresh.tm = setTimeout(refresh, S.pendingV ? 12000 : 60000);
+}
+document.addEventListener("visibilitychange", () => { if (!document.hidden && T) refresh(); });
+window.addEventListener("hashchange", () => location.reload()); // 從通知點進來換了 #k／w／d
+
+async function save() {
+  clearTimeout(S.timer);
+  const cfg = { ...clone(S.draft), v: Date.now() };
+  S.saving = true; renderPill();
+  try {
+    const r = await fetch(`${NTFY}/${T.cfg}`, { method: "POST", body: JSON.stringify(cfg) });
+    if (!r.ok) throw new Error(r.status);
+    S.draft.v = cfg.v; S.pendingV = cfg.v; S.dirty = false;
+    toast(t("sent"));
+    clearTimeout(refresh.tm); refresh.tm = setTimeout(refresh, 8000);
+  } catch {
+    S.dirty = true; toast(t("saveFail"));
+  }
+  S.saving = false; render();
+}
+function saveSoon() { S.dirty = true; renderPill(); clearTimeout(S.timer); S.timer = setTimeout(save, 1500); }
+
+// ---------- 畫面 ----------
+function applyI18n() {
+  document.documentElement.lang = LANG === "zh" ? "zh-Hant" : "en";
+  document.title = t("app");
+  document.querySelectorAll("[data-i]").forEach((el) => { el.textContent = t(el.dataset.i); });
+  document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
+}
+
+function renderPill() {
+  const pill = $("#pill"), txt = pill.lastElementChild, st = S.status;
+  let cls = "", msg;
+  if (!T) { cls = "bad"; msg = t("noKey"); }
+  else if (S.saving || S.dirty) { cls = "busy"; msg = t("unsaved"); }
+  else if (!S.loaded) { cls = "busy"; msg = t("connecting"); }
+  else if (!st) { cls = "bad"; msg = t("offline"); }
+  else if (st._cached || Date.now() - Date.parse(st.t) > 90 * 6e4) { cls = "warn"; msg = t("stale", { ago: ago(st.t) }); }
+  else if (S.pendingV) { cls = "busy"; msg = t("applying"); }
+  else if (!st.last) { msg = t("waitingFirst"); }
+  else { msg = t("live", { ago: ago(st.last), next: clock(st.next) }); }
+  pill.className = "pill " + cls; txt.textContent = msg;
+  const n = [];
+  if (st && st.streak >= 2) n.push(`<div class="notice warn">${esc(t("trouble"))}</div>`);
+  if (st && st.cfg_error && !S.pendingV) n.push(`<div class="notice bad">${esc(t("rejected", { err: st.cfg_error }))}</div>`);
+  $("#notices").innerHTML = n.join("");
+}
+
+function tripMeta(w, cur) {
+  const parts = [fmtDay(w.date_from) + (LANG === "zh" ? "–" : " – ") + fmtDay(w.date_to)];
+  parts.push(anyTime(w) ? t("anyTime") : `${w.time_from}–${w.time_to}`);
+  parts.push(w.nonstop ? t("nonstop") : t("upTo1"));
+  if (w.max_price) parts.push(t("target", { p: money(w.max_price, cur) }));
+  if (w.adults > 1) parts.push(t("adultsN", { n: w.adults }));
+  if (w.seat !== "economy") parts.push(t(w.seat));
+  return parts.map(esc).join(" · ");
+}
+function stopsText(f) {
+  if (!f.stops) return t("nonstop");
+  const s = f.stops === 1 ? t("stop1") : t("stopsN", { n: f.stops });
+  return f.via ? `${s} ${t("via", { v: f.via })}` : s;
+}
+function cheapest(fl, w) {
+  let best = null;
+  for (const f of fl || []) if (!f.gone && f.p != null && inWin(f.dep, w) && (best == null || f.p < best)) best = f.p;
+  return best;
+}
+function pickDay(w, res, days) {
+  if (S.focus.w === w.id && days.includes(S.focus.d)) return S.focus.d;
+  return days.find((d) => res?.days?.[d]) || days[0];
+}
+
+function flightRow(w, day, f, cur) {
+  const key = `${day}|${f.k}`, pinned = w.pinned.includes(key), win = inWin(f.dep, w);
+  const b = [];
+  if (f.gone) b.push(`<span class="b bad">${esc(t("badgeGone"))}</span>`);
+  else {
+    if (recent(f.back)) b.push(`<span class="b good">${esc(t("badgeBack"))}</span>`);
+    else if (!f.init && recent(f.first)) b.push(`<span class="b new">${esc(t("badgeNew"))}</span>`);
+    if (recent(f.chg) && f.prev != null && f.p != null && f.prev !== f.p) {
+      const d = f.p - f.prev;
+      b.push(`<span class="b ${d < 0 ? "good" : "bad"}">${d < 0 ? "↓" : "↑"} ${esc(money(Math.abs(d), cur))}</span>`);
+    }
+  }
+  const low = !f.gone && f.low != null && f.p != null && f.low < f.p ? `<small>${esc(t("lowWas", { p: money(f.low, cur) }))}</small>` : "";
+  return `<li class="fl${win ? "" : " out"}${f.gone ? " gone" : ""}">
+    <button class="pin" data-act="pin" data-w="${esc(w.id)}" data-key="${esc(key)}" aria-pressed="${pinned}" aria-label="${esc(t("watching"))} ${esc(f.k)}">✓</button>
+    <div class="fl-main">
+      <div class="fl-times">${esc(f.dep)}<span class="arw">→</span>${esc(f.arr)}${f.plus ? `<sup>+${f.plus}</sup>` : ""}</div>
+      <div class="fl-sub">${esc(f.k.replace(/\+/g, " + "))} · ${esc(f.al)} · ${esc(fmtDur(f.dur))} · ${esc(stopsText(f))}</div>
+      <div class="badges">${b.join("")}</div>
+    </div>
+    <div class="fl-price"><span class="v">${esc(money(f.p, cur))}</span>${low}</div>
+  </li>`;
+}
+
+function tripCard(w) {
+  const cur = S.draft.currency, res = S.status?.res?.[w.id], days = watchDays(w);
+  let sel = S.sel[w.id];
+  if (!days.includes(sel)) sel = S.sel[w.id] = pickDay(w, res, days);
+  const head = `<div class="card-h"><div class="ttl">
+      <div class="route">${esc(w.from)} → ${esc(w.to)}${w.name ? `<span class="nm">${esc(w.name)}</span>` : ""}${w.enabled ? "" : `<span class="tag">${esc(t("paused"))}</span>`}</div>
+      <div class="meta">${tripMeta(w, cur)}</div></div>
+      <button class="btn" data-act="edit" data-w="${esc(w.id)}">${esc(t("edit"))}</button></div>`;
+  if (!days.length) return `<section class="card" id="trip-${esc(w.id)}">${head}<div class="empty">${esc(t("ePast"))}</div></section>`;
+
+  const pins = w.pinned.filter((p) => days.includes(p.split("|")[0])).map((p) => {
+    const [d, k] = p.split("|");
+    const f = res?.days?.[d]?.fl?.find((x) => x.k === k);
+    const ok = f && !f.gone && f.p != null;
+    return `<button class="pinchip ${f ? (ok ? "ok" : "out") : ""}" data-act="day" data-w="${esc(w.id)}" data-d="${esc(d)}">
+      ${esc(dayParts(d).join(" "))} · ${esc(k)}<b>${f ? esc(ok ? money(f.p, cur) : t("badgeGone")) : "…"}</b></button>`;
+  });
+  const chips = days.map((d) => {
+    const dd = res?.days?.[d], err = res?.err?.[d], c = cheapest(dd?.fl, w), [a, b] = dayParts(d);
+    const price = dd ? (c != null ? money(c, cur) : "—") : err ? "!" : "…";
+    return `<button class="day" data-act="day" data-w="${esc(w.id)}" data-d="${esc(d)}" aria-pressed="${d === sel}">
+      <div class="d1">${esc(a)} ${esc(b)}</div><div class="d2">${esc(price)}</div></button>`;
+  }).join("");
+
+  const dd = res?.days?.[sel], err = res?.err?.[sel];
+  let list;
+  if (!dd) list = `<div class="empty">${esc(err ? t("dayErr", { e: err }) : t("notChecked"))}</div>`;
+  else {
+    let fl = dd.fl.slice();
+    if (S.onlyWin[w.id]) fl = fl.filter((f) => inWin(f.dep, w));
+    if (S.sort === "price") fl.sort((a, b) => (!!a.gone - !!b.gone) || ((a.p ?? 1e12) - (b.p ?? 1e12)));
+    list = fl.length ? `<ul class="list">${fl.map((f) => flightRow(w, sel, f, cur)).join("")}</ul>`
+      : `<div class="empty">${esc(S.onlyWin[w.id] ? t("noneInWin") : t("noFlights"))}</div>`;
+    if (err) list = `<div class="notice warn" style="margin:0 16px 10px">${esc(t("dayErr", { e: err }))}</div>` + list;
+  }
+  const url = /^https:\/\/www\.google\.com\/travel\/flights/.test(res?.url?.[sel] || "") ? res.url[sel] : null;
+  return `<section class="card" id="trip-${esc(w.id)}">${head}
+    ${pins.length ? `<div class="pins">${pins.join("")}</div>` : ""}
+    <div class="dates" data-w="${esc(w.id)}">${chips}</div>
+    <div class="tools">
+      <div class="seg" role="group"><button data-act="sort" data-v="time" aria-pressed="${S.sort === "time"}">${esc(t("sortTime"))}</button><button data-act="sort" data-v="price" aria-pressed="${S.sort === "price"}">${esc(t("sortPrice"))}</button></div>
+      <label><input type="checkbox" data-act="win" data-w="${esc(w.id)}" ${S.onlyWin[w.id] ? "checked" : ""}>${esc(t("onlyWin"))}</label>
+    </div>
+    ${list}
+    <div class="card-f"><span>${dd ? esc(t("checked", { ago: ago(dd.checked) })) : ""}</span>${url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(t("google"))}</a>` : ""}</div>
+  </section>`;
+}
+
+function settingsCard() {
+  const c = S.draft;
+  const curOpts = ["SGD", "TWD", "USD", "MYR", "HKD", "JPY"].map((x) => `<option ${x === c.currency ? "selected" : ""}>${x}</option>`).join("");
+  const ivOpts = [[30, "min30"], [60, "h1"], [120, "h2"], [180, "h3"]].map(([v, k]) => `<option value="${v}" ${v === c.interval ? "selected" : ""}>${esc(t(k))}</option>`).join("");
+  const lgOpts = [["en", "English"], ["zh", "中文"]].map(([v, l]) => `<option value="${v}" ${v === c.lang ? "selected" : ""}>${l}</option>`).join("");
+  return `<div class="sect">${esc(t("notif"))}</div>
+  <section class="card"><div class="dlg-b">
+    <div>${esc(t("notifHow"))}</div>
+    <ol class="steps"><li>${esc(t("step1"))}</li><li>${esc(t("step2"))}</li><li>${esc(t("step3"))}</li></ol>
+    <code class="topic" id="topicName">${esc(T.main)}</code>
+    <div class="acts" style="margin-top:10px"><button class="btn" data-act="copy">${esc(t("copy"))}</button><button class="btn" data-act="test">${esc(t("test"))}</button></div>
+  </div></section>
+  <div class="sect">${esc(t("settings"))}</div>
+  <section class="card">
+    <div class="row"><div class="lab">${esc(t("currency"))}<small>${esc(t("currencyHint"))}</small></div><select class="inp" data-act="currency" aria-label="${esc(t("currency"))}">${curOpts}</select></div>
+    <div class="row"><div class="lab">${esc(t("every"))}</div><select class="inp" data-act="interval" aria-label="${esc(t("every"))}">${ivOpts}</select></div>
+    <div class="row"><div class="lab">${esc(t("notifLang"))}</div><select class="inp" data-act="nlang" aria-label="${esc(t("notifLang"))}">${lgOpts}</select></div>
+  </section>`;
+}
+function eventsCard() {
+  const ev = S.status?.events || [];
+  return `<div class="sect">${esc(t("recent"))}</div><section class="card">${ev.length ? ev.slice(0, 10).map((e) =>
+    `<div class="ev"><time>${esc(fmtDay(e.t.slice(0, 10)))} ${esc(clock(e.t))}</time><div class="et">${esc(e.title)}</div><div class="em">${esc(e.msg)}</div></div>`).join("")
+    : `<div class="empty" style="border:0">${esc(t("noRecent"))}</div>`}</section>`;
+}
+
+function render() {
+  applyI18n();
+  renderPill();
+  const app = $("#app");
+  if (!T) { app.innerHTML = `<section class="card hero"><div style="font-size:40px">🔑</div><h2>${esc(t("noKey"))}</h2><p>${esc(t("noKeyMsg"))}</p></section>`; return; }
+  if (!S.draft) return;
+  const scroll = {};
+  app.querySelectorAll(".dates").forEach((el) => { scroll[el.dataset.w] = el.scrollLeft; });
+  const ws = S.draft.watches;
+  const trips = ws.length ? ws.map(tripCard).join("") + `<button class="btn block" data-act="add">＋ ${esc(t("addTrip"))}</button>`
+    : `<section class="card hero"><div style="font-size:40px">🛫</div><h2>${esc(t("noTrips"))}</h2><p>${esc(t("noTripsMsg"))}</p>
+       <button class="btn primary block" data-act="add">${esc(t("addTrip"))}</button></section>`;
+  const hint = ws.length && !ws.some((w) => w.pinned.length) ? `<p class="hint" style="margin:10px 4px 0">${esc(t("watchHint"))}</p>` : "";
+  app.innerHTML = trips + hint + settingsCard() + eventsCard();
+  app.querySelectorAll(".dates").forEach((el) => {
+    if (scroll[el.dataset.w] != null) el.scrollLeft = scroll[el.dataset.w];
+    else { const on = el.querySelector('[aria-pressed="true"]'); if (on) el.scrollLeft = on.offsetLeft - 16; }
+  });
+  if (S.focus.w && !render.focused) {
+    const el = document.getElementById(`trip-${S.focus.w}`);
+    if (el && S.status) { render.focused = true; el.scrollIntoView({ block: "start" }); }
+  }
+}
+
+// ---------- 互動 ----------
+document.querySelectorAll("[data-lang]").forEach((b) => b.addEventListener("click", () => {
+  LANG = b.dataset.lang; store.set("fw-lang", LANG); render();
+}));
+const findW = (id) => S.draft.watches.find((w) => w.id === id);
+
+$("#app").addEventListener("click", async (e) => {
+  const el = e.target.closest("[data-act]");
+  if (!el || el.tagName === "SELECT" || el.type === "checkbox") return;
+  const act = el.dataset.act;
+  if (act === "pin") {
+    const w = findW(el.dataset.w), k = el.dataset.key, i = w.pinned.indexOf(k);
+    if (i >= 0) w.pinned.splice(i, 1); else w.pinned.push(k);
+    el.setAttribute("aria-pressed", String(i < 0));
+    saveSoon(); render();
+  } else if (act === "day") { S.sel[el.dataset.w] = el.dataset.d; render(); }
+  else if (act === "sort") { S.sort = el.dataset.v; store.set("fw-sort", S.sort); render(); }
+  else if (act === "edit") openEditor(findW(el.dataset.w));
+  else if (act === "add") openEditor(null);
+  else if (act === "copy") {
+    try { await navigator.clipboard.writeText(T.main); toast(t("copied")); }
+    catch { const r = document.createRange(); r.selectNodeContents($("#topicName")); getSelection().removeAllRanges(); getSelection().addRange(r); }
+  } else if (act === "test") {
+    try {
+      const r = await fetch(NTFY, { method: "POST", body: JSON.stringify({ topic: T.main, title: t("testTitle"), message: t("testMsg"), tags: ["white_check_mark"] }) });
+      toast(r.ok ? t("testSent") : t("saveFail"));
+    } catch { toast(t("saveFail")); }
+  }
+});
+$("#app").addEventListener("change", (e) => {
+  const el = e.target, act = el.dataset.act;
+  if (act === "win") { S.onlyWin[el.dataset.w] = el.checked; render(); }
+  else if (act === "currency") {
+    if (!confirm(t("confirmCur"))) { el.value = S.draft.currency; return; }
+    S.draft.currency = el.value; save();
+  } else if (act === "interval") { S.draft.interval = Number(el.value); save(); }
+  else if (act === "nlang") { S.draft.lang = el.value; save(); }
+});
+
+// ---------- 編輯行程 ----------
+const dlg = $("#dlg");
+let editing = null;
+const QUICK = ["SIN", "TPE", "KHH"];
+const WINS = [["anyTime", "00:00", "23:59"], ["morning", "06:00", "12:00"], ["afternoon", "12:00", "18:00"], ["evening", "18:00", "23:59"]];
+function fillSelects() {
+  $("#fAdults").innerHTML = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `<option>${n}</option>`).join("");
+  $("#fSeat").innerHTML = ["economy", "premium-economy", "business", "first"].map((s) => `<option value="${s}">${esc(t(s))}</option>`).join("");
+  $("#fQuick").innerHTML = QUICK.map((c) => `<button type="button" data-ap="${c}">${c}</button>`).join("");
+  $("#fWinQuick").innerHTML = WINS.map(([k, a, b]) => `<button type="button" data-t0="${a}" data-t1="${b}">${esc(t(k))}</button>`).join("");
+  $("#fMaxLbl").textContent = t("fMax", { c: S.draft.currency });
+}
+let lastAp = "fTo";
+["fFrom", "fTo"].forEach((id) => $("#" + id).addEventListener("focus", () => { lastAp = id; }));
+$("#fQuick").addEventListener("click", (e) => { const b = e.target.closest("[data-ap]"); if (b) { $("#" + lastAp).value = b.dataset.ap; lastAp = lastAp === "fFrom" ? "fTo" : "fFrom"; } });
+$("#fWinQuick").addEventListener("click", (e) => { const b = e.target.closest("[data-t0]"); if (b) { $("#fT0").value = b.dataset.t0; $("#fT1").value = b.dataset.t1; } });
+$("#fSwap").addEventListener("click", () => { const a = $("#fFrom").value; $("#fFrom").value = $("#fTo").value; $("#fTo").value = a; });
+dlg.querySelector("[data-close]").addEventListener("click", () => dlg.close());
+$("#tripForm").addEventListener("submit", (e) => { e.preventDefault(); $("#fSave").click(); }); // 鍵盤按 Enter 也走儲存
+
+function openEditor(w, preset) {
+  editing = w;
+  applyI18n(); fillSelects();
+  const d0 = addDays(todaySG(), 14);
+  const v = w || preset || { name: "", from: "SIN", to: "TPE", date_from: d0, date_to: addDays(d0, 2), time_from: "00:00", time_to: "23:59",
+    nonstop: true, max_price: null, adults: 1, seat: "economy", enabled: true };
+  $("#dlgTitle").textContent = t(w ? "editTrip" : "newTrip");
+  $("#fName").value = v.name || ""; $("#fFrom").value = v.from; $("#fTo").value = v.to;
+  $("#fD0").value = v.date_from; $("#fD1").value = v.date_to; $("#fD0").min = $("#fD1").min = todaySG();
+  $("#fT0").value = v.time_from; $("#fT1").value = v.time_to;
+  $("#fMax").value = v.max_price || ""; $("#fAdults").value = String(v.adults); $("#fSeat").value = v.seat;
+  $("#fNonstop").checked = v.nonstop; $("#fEnabled").checked = v.enabled;
+  $("#fErr").textContent = "";
+  $("#fMore").style.display = w ? "" : "none";
+  dlg.showModal();
+}
+function readForm() {
+  const w = {
+    id: editing?.id || "w" + Math.random().toString(36).slice(2, 8),
+    name: $("#fName").value.trim().slice(0, 24),
+    from: $("#fFrom").value.trim().toUpperCase(), to: $("#fTo").value.trim().toUpperCase(),
+    date_from: $("#fD0").value, date_to: $("#fD1").value, time_from: $("#fT0").value, time_to: $("#fT1").value,
+    nonstop: $("#fNonstop").checked, max_price: Number($("#fMax").value) > 0 ? Math.round(Number($("#fMax").value)) : null,
+    adults: Number($("#fAdults").value), seat: $("#fSeat").value, enabled: $("#fEnabled").checked,
+    pinned: editing ? editing.pinned.slice() : [],
+  };
+  if (!/^[A-Z]{3}$/.test(w.from) || !/^[A-Z]{3}$/.test(w.to)) return [null, t("eAirport")];
+  if (w.from === w.to) return [null, t("eSame")];
+  if (!w.date_from || !w.date_to) return [null, t("eDates")];
+  if (w.date_to < w.date_from) return [null, t("eOrder")];
+  if (daysBetween(w.date_from, w.date_to) > 30) return [null, t("eSpan")];
+  if (w.date_to < todaySG()) return [null, t("ePast")];
+  if (!w.time_from || !w.time_to) return [null, t("eTime")];
+  if (editing && (editing.from !== w.from || editing.to !== w.to)) w.pinned = [];
+  w.pinned = w.pinned.filter((p) => { const d = p.split("|")[0]; return d >= w.date_from && d <= w.date_to; });
+  const others = S.draft.watches.filter((x) => x.id !== w.id && x.enabled).reduce((n, x) => n + watchDays(x).length, 0);
+  const total = others + (w.enabled ? watchDays(w).length : 0);
+  if (total > MAX_DATES) return [null, t("eTotal", { n: total, max: MAX_DATES })];
+  return [w, null];
+}
+$("#fSave").addEventListener("click", () => {
+  const [w, err] = readForm();
+  if (err) { $("#fErr").textContent = err; $("#tripForm").parentElement.scrollTop = 0; return; }
+  const i = S.draft.watches.findIndex((x) => x.id === w.id);
+  if (i >= 0) S.draft.watches[i] = w; else S.draft.watches.push(w);
+  S.sel[w.id] = null; S.focus = { w: w.id, d: null }; render.focused = false;
+  dlg.close(); save();
+});
+$("#fDelete").addEventListener("click", () => {
+  if (!editing || !confirm(t("confirmDelete"))) return;
+  S.draft.watches = S.draft.watches.filter((x) => x.id !== editing.id);
+  dlg.close(); save();
+});
+$("#fReturn").addEventListener("click", () => {
+  const w = editing; dlg.close();
+  const d0 = addDays(w.date_to, 5);
+  openEditor(null, { ...w, name: t("returnName"), from: w.to, to: w.from, date_from: d0, date_to: addDays(d0, daysBetween(w.date_from, w.date_to)), pinned: [] });
+});
+
+render();
+refresh();
+</script>
+</body>
+</html>
