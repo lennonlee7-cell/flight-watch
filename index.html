@@ -1,13 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-skin="ehon">
 <head>
 <meta charset="utf-8">
+<script>try { if (localStorage.getItem("fw-skin") === "modern") document.documentElement.dataset.skin = "modern"; } catch (e) {}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Flight Watch">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#2447e8">
+<meta name="theme-color" content="#A8D3E6">
 <meta name="robots" content="noindex">
 <meta name="referrer" content="no-referrer">
 <title>Flight Watch</title>
@@ -15,7 +16,7 @@
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231a2a6c'/%3E%3Cstop offset='1' stop-color='%2347b6ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' fill='url(%23g)'/%3E%3Cpath d='M47 29.5 35 23V13.5a3 3 0 0 0-6 0V23l-12 6.5v4l12-3.5v8.5l-4 3v3l7-2 7 2v-3l-4-3V30l12 3.5z' fill='white'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --font: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
@@ -280,6 +281,146 @@ fieldset.grp legend { font-size: 12px; font-weight: 800; text-transform: upperca
 .sheet-acts { display: flex; gap: 10px; margin-top: 18px; }
 .sheet-acts .btn { flex: 1; }
 @media (max-width: 360px) { .ap .code { font-size: 30px; } .tl { font-size: 16px; } .price { font-size: 16px; } .dp { width: 60px; } }
+
+/* ==========================================================================
+   繪本風外觀（預設）：模板見 Obsidian「英文口說App\設計模板_繪本風.md」
+   和紙白底、3px 墨灰線框、四色平塗不用漸層、粉圓字型、自畫 SVG 插圖；只有淺色
+   ========================================================================== */
+.art { display: block; flex: none; }
+:root:not([data-skin="ehon"]) .ehon-only, [data-skin="ehon"] .modern-only { display: none !important; }
+:root[data-skin="ehon"] {
+  --font: "Huninn", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  --ink: #3E3A39; --paper: #FFFCF6;
+  --coral: #F2A497; --yellow: #F6D27A; --mizu: #A8D3E6; --green: #B9DAA5;
+  --coral-soft: #FCE7E2; --yellow-soft: #FDF3D6; --mizu-soft: #E2F1F7; --green-soft: #E8F3E0;
+  --bg: var(--paper); --card: #FFFFFF; --sub: #7C7571; --faint: #A69F9A;
+  --line: #E8DFD2; --line-2: var(--ink); --fill: #F5EEE2;
+  --brand: var(--ink); --brand-soft: var(--yellow-soft); --on-brand: var(--ink);
+  --good: #4F8139; --good-soft: var(--green-soft); --bad: #C9503F; --bad-soft: #FBE1DB; --warn: #9A6A00; --warn-soft: var(--yellow-soft);
+  --hero: var(--mizu); --shadow: none; --shadow-lg: none;
+  color-scheme: light;
+}
+[data-skin="ehon"] body { background: var(--paper); font-synthesis: none; }
+[data-skin="ehon"] body * { font-weight: 400 !important; } /* 粉圓只有一種粗細，標題靠字級 */
+
+/* 頁首：水色平塗＋插圖 */
+[data-skin="ehon"] .hero { background: var(--mizu); color: var(--ink); border-bottom: 3px solid var(--ink); border-radius: 0 0 34px 34px; }
+[data-skin="ehon"] .hero::before, [data-skin="ehon"] .hero .arc { display: none; }
+[data-skin="ehon"] .mark { background: #fff; border: 2px solid var(--ink); }
+[data-skin="ehon"] .mark svg { fill: var(--ink); }
+[data-skin="ehon"] .lang { background: #fff; border: 2px solid var(--ink); }
+[data-skin="ehon"] .lang button { color: var(--sub); }
+[data-skin="ehon"] .lang button[aria-pressed="true"] { background: var(--yellow); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+[data-skin="ehon"] .hero h1 { font-size: 27px; max-width: calc(100% - 118px); margin-top: 22px; }
+[data-skin="ehon"] .hero-sub { color: var(--ink); max-width: calc(100% - 104px); font-size: 14px; }
+.hero > .wrap { position: relative; }
+.hero-art { position: absolute; right: 8px; top: 52px; width: 112px; height: 104px; pointer-events: none; }
+.hero-art .art { position: absolute; }
+.hero-art .a1 { width: 92px; height: 92px; right: 4px; top: 10px; }
+.hero-art .a2 { width: 44px; height: 44px; left: -4px; top: 0; }
+.hero-art .a3 { width: 58px; height: 58px; left: 0; bottom: -18px; }
+[data-skin="ehon"] .pill { background: #fff; border: 2px solid var(--ink); color: var(--ink); }
+[data-skin="ehon"] .pill .dot { width: 12px; height: 12px; background: var(--green); border: 2px solid var(--ink); box-shadow: none; }
+[data-skin="ehon"] .pill.warn .dot, [data-skin="ehon"] .pill.busy .dot { background: var(--yellow); box-shadow: none; }
+[data-skin="ehon"] .pill.bad .dot { background: var(--coral); box-shadow: none; }
+[data-skin="ehon"] .notice { border: 2px solid var(--ink); color: var(--ink); }
+
+/* 卡片：白底＋墨線，登機證上半輪流用淡色 */
+[data-skin="ehon"] :is(.pass, .card, .heroCard) { border: 3px solid var(--ink); box-shadow: none; }
+[data-skin="ehon"] .pass-top { background: var(--coral-soft); }
+[data-skin="ehon"] .pass:nth-of-type(2n) .pass-top { background: var(--mizu-soft); }
+[data-skin="ehon"] .pass:nth-of-type(3n) .pass-top { background: var(--green-soft); }
+[data-skin="ehon"] .kind { color: var(--ink); background: var(--yellow); border: 2px solid var(--ink); border-radius: 999px; padding: 1px 10px; letter-spacing: .04em; }
+[data-skin="ehon"] .tagname, [data-skin="ehon"] .tag { border: 2px solid var(--ink); color: var(--ink); }
+[data-skin="ehon"] .ibtn { border: 2px solid var(--ink); box-shadow: 0 3px 0 var(--ink); }
+[data-skin="ehon"] .path { color: var(--ink); }
+[data-skin="ehon"] .path .pl { background: var(--yellow); box-shadow: 0 0 0 2px var(--ink); color: var(--ink); }
+[data-skin="ehon"] .perf { border-top: 3px dashed var(--ink); }
+[data-skin="ehon"] .perf::before, [data-skin="ehon"] .perf::after { width: 26px; height: 26px; top: -15px; border: 3px solid var(--ink); }
+[data-skin="ehon"] .perf::before { left: -35px; } [data-skin="ehon"] .perf::after { right: -35px; }
+[data-skin="ehon"] .info .k { color: var(--sub); letter-spacing: .06em; }
+[data-skin="ehon"] .wc { background: var(--yellow-soft); border: 2px solid var(--ink); }
+[data-skin="ehon"] .wc .ic, [data-skin="ehon"] .slabel span { color: var(--ink); }
+
+/* 日期貼紙 */
+[data-skin="ehon"] .dp { border: 2px solid var(--ink); }
+[data-skin="ehon"] .dp[aria-pressed="true"] { background: var(--yellow); color: var(--ink); border-color: var(--ink); box-shadow: 0 3px 0 var(--ink); }
+[data-skin="ehon"] .dp[aria-pressed="true"] :is(.wd, .mo) { color: var(--sub); opacity: 1; }
+[data-skin="ehon"] .dp .pr { display: inline-block; padding: 1px 5px; border-radius: 8px; border: 2px solid transparent; }
+[data-skin="ehon"] .dp.best .pr, [data-skin="ehon"] .dp[aria-pressed="true"].best .pr { background: var(--green); color: var(--ink); border-color: var(--ink); }
+
+/* 分段、篩選、航班列 */
+[data-skin="ehon"] .seg { background: var(--fill); border: 2px solid var(--ink); }
+[data-skin="ehon"] .seg button[aria-pressed="true"] { background: var(--yellow); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+[data-skin="ehon"] .fchip { border: 2px solid var(--ink); color: var(--ink); }
+[data-skin="ehon"] .fchip[aria-pressed="true"] { background: var(--yellow); border-color: var(--ink); color: var(--ink); }
+[data-skin="ehon"] .fr + .fr { box-shadow: none; border-top: 2px dashed var(--line); border-radius: 0; }
+[data-skin="ehon"] .fr.watched { background: var(--yellow-soft); border: 2px solid var(--ink); border-radius: 18px; }
+[data-skin="ehon"] .fr.watched + .fr { border-top-color: transparent; }
+[data-skin="ehon"] .al { border: 2px solid var(--ink); }
+[data-skin="ehon"] .tl .ln { background: repeating-linear-gradient(90deg, var(--ink) 0 4px, transparent 4px 8px); opacity: .55; }
+[data-skin="ehon"] .tl .ln::after { border-color: var(--ink); background: #fff; }
+[data-skin="ehon"] .tl .ln.stop::after { background: var(--yellow); }
+[data-skin="ehon"] .tl sup { color: var(--bad); }
+[data-skin="ehon"] .bell { border: 2px solid var(--ink); color: var(--ink); background: #fff; }
+[data-skin="ehon"] .bell[aria-pressed="true"] { background: var(--yellow); border-color: var(--ink); color: var(--ink); box-shadow: 0 3px 0 var(--ink); }
+[data-skin="ehon"] .book { background: var(--coral); color: var(--ink); border: 2px solid var(--ink); box-shadow: 0 3px 0 var(--ink); }
+[data-skin="ehon"] :is(.book, .bell, .ibtn, .gf, .btn, .swap, .lnk.strong):active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink); }
+[data-skin="ehon"] .b { border: 2px solid var(--ink); color: var(--ink); padding: 0 6px; }
+[data-skin="ehon"] .b.new { background: var(--mizu); } [data-skin="ehon"] .b.good { background: var(--green); }
+[data-skin="ehon"] .b.bad { background: var(--coral); } [data-skin="ehon"] .b.mute { background: var(--fill); }
+[data-skin="ehon"] .ret { background: var(--mizu-soft); border: 2px solid var(--ink); }
+[data-skin="ehon"] .ret .fr + .fr { box-shadow: none; border-top: 2px dashed #C3DCE6; }
+[data-skin="ehon"] .hintbox { border: 2px dashed var(--ink); background: var(--yellow-soft); color: var(--ink); }
+[data-skin="ehon"] .hintbox .ic { background: #fff; border: 2px solid var(--ink); color: var(--ink); }
+[data-skin="ehon"] .pf { border-top: 2px dashed var(--line); }
+[data-skin="ehon"] .gf { border: 2px solid var(--ink); box-shadow: 0 3px 0 var(--ink); background: #fff; }
+[data-skin="ehon"] .add { border: 3px dashed var(--ink); color: var(--ink); background: #fff; }
+[data-skin="ehon"] .btn { border: 3px solid var(--ink); box-shadow: 0 4px 0 var(--ink); background: #fff; color: var(--ink); transition: transform .08s, box-shadow .08s; }
+[data-skin="ehon"] .btn.primary, [data-skin="ehon"] .btn.danger { background: var(--coral); color: var(--ink); box-shadow: 0 4px 0 var(--ink); }
+[data-skin="ehon"] .sect { color: var(--ink); }
+[data-skin="ehon"] .ch .ic { background: var(--yellow-soft); border: 2px solid var(--ink); color: var(--ink); }
+[data-skin="ehon"] ol.steps li::before { background: var(--yellow); border: 2px solid var(--ink); color: var(--ink); }
+[data-skin="ehon"] .topic { background: var(--fill); border: 2px solid var(--ink); }
+[data-skin="ehon"] .topic .btn { border-width: 2px; box-shadow: 0 2px 0 var(--ink); }
+[data-skin="ehon"] .row + .row { border-top: 2px dashed var(--line); }
+[data-skin="ehon"] .row .lab .ic { background: var(--mizu-soft); border: 2px solid var(--ink); color: var(--ink); }
+[data-skin="ehon"] :is(select.inp, input.inp) { background: #fff; border: 2px solid var(--ink); }
+[data-skin="ehon"] .inp:focus { border-color: var(--ink); box-shadow: 0 0 0 3px var(--yellow); }
+[data-skin="ehon"] .ev .d { background: var(--coral); border: 2px solid var(--ink); box-shadow: none; width: 12px; height: 12px; }
+[data-skin="ehon"] .ev + .ev { border-top: 2px dashed var(--line); }
+[data-skin="ehon"] #toast { background: #fff; color: var(--ink); border: 3px solid var(--ink); box-shadow: 0 4px 0 var(--ink); }
+[data-skin="ehon"] .heroCard .art { margin: 0 auto; }
+
+/* 編輯抽屜 */
+[data-skin="ehon"] dialog.sheet { background: var(--paper); border: 3px solid var(--ink); border-bottom: 0; }
+[data-skin="ehon"] dialog::backdrop { background: rgba(62, 58, 57, .35); }
+[data-skin="ehon"] .sheet-h { background: var(--paper); border-bottom: 3px solid var(--ink); }
+[data-skin="ehon"] .sheet-h::before { background: var(--ink); opacity: .35; }
+[data-skin="ehon"] .lnk { color: var(--ink); }
+[data-skin="ehon"] .lnk.strong { background: var(--coral); border: 2px solid var(--ink); border-radius: 999px; padding: 5px 16px; margin-top: 10px; box-shadow: 0 3px 0 var(--ink); }
+[data-skin="ehon"] .err { border: 2px solid var(--ink); color: var(--ink); }
+[data-skin="ehon"] .apin { background: #fff; border: 2px solid var(--ink); }
+[data-skin="ehon"] .apin:focus-within { border-color: var(--ink); box-shadow: 0 0 0 3px var(--yellow); }
+[data-skin="ehon"] .swap { background: var(--yellow); border: 2px solid var(--ink); color: var(--ink); box-shadow: 0 3px 0 var(--ink); }
+[data-skin="ehon"] .quick button { border: 2px solid var(--ink); color: var(--ink); }
+[data-skin="ehon"] .sw span { background: var(--fill); border: 2px solid var(--ink); }
+[data-skin="ehon"] .sw span::after { width: 24px; height: 24px; left: 2px; top: 2px; border: 2px solid var(--ink); box-shadow: none; }
+[data-skin="ehon"] .sw input:checked + span { background: var(--green); }
+[data-skin="ehon"] .stepper { background: #fff; border: 2px solid var(--ink); }
+[data-skin="ehon"] .stepper button { color: var(--ink); }
+[data-skin="ehon"] .meter .mb { height: 12px; border-radius: 6px; background: var(--fill); border: 2px solid var(--ink); }
+[data-skin="ehon"] .meter .mb i { border-radius: 0; background: var(--yellow); border-right: 2px solid var(--ink); }
+[data-skin="ehon"] .meter.over .mb i { background: var(--coral); }
+
+/* 插圖輕輕晃 */
+.float { animation: ehon-float 3.4s ease-in-out infinite; transform-origin: 50% 90%; }
+.float.d2 { animation-delay: -1.2s; } .float.d3 { animation-delay: -2.3s; }
+@keyframes ehon-float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-4px) rotate(-2deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .float, .pill.busy .dot { animation: none !important; }
+  [data-skin="ehon"] :is(.btn, .book, .bell) { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -294,6 +435,7 @@ fieldset.grp legend { font-size: 12px; font-weight: 800; text-transform: upperca
       <div class="brand"><span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span><span data-i="app"></span></div>
       <div class="lang" role="group" aria-label="Language"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="zh" aria-pressed="false">中文</button></div>
     </div>
+    <div class="hero-art ehon-only" id="heroArt" aria-hidden="true"></div>
     <h1 data-i="heroTitle"></h1>
     <p class="hero-sub" data-i="heroSub"></p>
     <div id="pill" class="pill busy"><span class="dot"></span><span></span></div>
@@ -408,6 +550,7 @@ const I18N = {
     watching: "Watching", watchHint: "Tap the bell to watch a flight. It's checked every 15 minutes, and you only get a ping when it has seats again, hits a new lowest price, or reaches your target.",
     settings: "Settings", currency: "Currency", currencyHint: "Changing it restarts price history",
     every: "Check every", min30: "30 min", h1: "1 hour", h2: "2 hours", h3: "3 hours", notifLang: "Alert language",
+    style: "Look", styleEhon: "Picture book", styleModern: "Modern",
     notifSect: "Notifications", notif: "Alerts on your iPhone", notifSub: "Set up once, takes a minute", step1: "Install “ntfy” from the App Store.",
     step2: "Copy the channel below. In ntfy tap +, paste it (leave “Use another server” off), tap Subscribe.",
     step3: "Allow notifications, then send a test.", copy: "Copy", copied: "Copied", test: "Send a test alert",
@@ -454,6 +597,7 @@ const I18N = {
     watching: "盯的航班", watchHint: "點鈴鐺就會盯這班：每 15 分鐘查一次，只有「有票了」「創新低價」「達到目標價」才通知。",
     settings: "設定", currency: "幣別", currencyHint: "更改後價格紀錄會重新開始",
     every: "檢查頻率", min30: "30 分鐘", h1: "1 小時", h2: "2 小時", h3: "3 小時", notifLang: "通知語言",
+    style: "外觀", styleEhon: "繪本風", styleModern: "簡約",
     notifSect: "通知", notif: "iPhone 推播通知", notifSub: "設定一次就好，約 1 分鐘", step1: "到 App Store 安裝「ntfy」。",
     step2: "複製下面的頻道名稱，在 ntfy 點 +、貼上（「Use another server」保持關閉），按 Subscribe。",
     step3: "允許通知，再傳一則測試。", copy: "複製", copied: "已複製", test: "傳一則測試通知",
@@ -492,6 +636,7 @@ const IC = {
   globe: (s) => svg('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>', s),
   bolt: (s) => svg('<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>', s),
   chev: (s) => svg('<path d="m9 6 6 6-6 6"/>', s),
+  palette: (s) => svg('<path d="M12 3a9 9 0 1 0 0 18c1 0 1.5-.7 1.5-1.5 0-.4-.2-.8-.4-1.1-.3-.3-.4-.6-.4-1 0-.8.7-1.5 1.5-1.5H16a5 5 0 0 0 5-5c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16.5" cy="10.5" r="1"/>', s),
   up: (s) => svg('<path d="M12 19V5M5 12l7-7 7 7"/>', s),
   plane: (s) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>`,
 };
@@ -504,6 +649,27 @@ const store = {
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const $ = (s, el = document) => el.querySelector(s);
 let LANG = store.get("fw-lang") === "zh" ? "zh" : "en";
+let SKIN = document.documentElement.dataset.skin === "modern" ? "modern" : "ehon";
+
+// 繪本風插圖（原創 SVG，取自繪本風模板 art.js）：墨灰 3px 線框＋四色平塗
+const EI = "#3E3A39", EC = "#F2A497", EY = "#F6D27A", EM = "#A8D3E6", EG = "#B9DAA5", EP = "#FFFCF6";
+const ES = `stroke="${EI}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"`;
+const ART = {
+  plane: `<g ${ES}><path d="M14 56c0-6 6-10 14-10h44c10 0 16 5 16 10s-6 10-16 10H28c-8 0-14-4-14-10z" fill="${EM}"/>
+    <path d="M44 48 34 26h10l18 22M44 64 34 84h10l18-20" fill="${EC}"/><path d="M18 50 12 36h8l8 12" fill="${EY}"/></g>
+    <circle cx="60" cy="56" r="3" fill="${EP}" ${ES}/><circle cx="70" cy="56" r="3" fill="${EP}" ${ES}/><circle cx="50" cy="56" r="3" fill="${EP}" ${ES}/>`,
+  suitcase: `<g ${ES}><path d="M40 30v-6h20v6" fill="none"/><rect x="24" y="30" width="52" height="52" rx="10" fill="${EY}"/>
+    <path d="M38 30v52M62 30v52" fill="none"/><path d="M34 82v6M66 82v6"/></g>
+    <rect x="44" y="48" width="12" height="10" rx="3" fill="${EG}" ${ES}/>`,
+  sun: `<g ${ES}><circle cx="50" cy="50" r="18" fill="${EY}"/>
+    <path d="M50 18v-8M50 90v-8M18 50h-8M90 50h-8M27 27l-6-6M79 79l-6-6M27 73l-6 6M79 21l-6 6" fill="none"/></g>`,
+  cloud: `<path d="M24 70c-8 0-12-6-10-12 2-6 8-8 13-6 1-10 10-16 20-14 7 1 12 7 13 13 7-2 14 3 14 10 0 5-4 9-10 9z" fill="#fff" ${ES}/>`,
+};
+const art = (name, cls = "") => `<svg class="art ${cls}" viewBox="0 0 100 100" aria-hidden="true">${ART[name]}</svg>`;
+function applySkin() {
+  document.documentElement.dataset.skin = SKIN;
+  document.querySelector('meta[name="theme-color"]').content = SKIN === "ehon" ? "#A8D3E6" : "#2447e8";
+}
 function t(k, vars) {
   const s = I18N[LANG][k] ?? I18N.en[k] ?? k;
   return typeof s === "string" ? s.replace(/\{(\w+)\}/g, (_, v) => vars?.[v] ?? "") : s;
@@ -535,7 +701,16 @@ const mins = (hhmm) => { const [h, m] = hhmm.split(":").map(Number); return h * 
 function inWin(dep, win) { const a = mins(win[0]), b = mins(win[1]), x = mins(dep); return a <= b ? a <= x && x <= b : x >= a || x <= b; }
 const anyWin = (a, b) => a === "00:00" && b === "23:59";
 const city = (c) => AIRPORTS[c]?.[LANG === "zh" ? 1 : 0] || "";
+// 繪本風的航空公司色塊只用四色平塗
+const EHON_AL = { TR: "y", SQ: "m", BR: "g", CI: "c", JX: "y", AK: "c", D7: "c", "3K": "y", CX: "g", MH: "m", TG: "c",
+  VN: "m", "5J": "y", PR: "m", IT: "c", OD: "c", MU: "m", CA: "c" };
+const EHON_COL = { c: "var(--coral)", y: "var(--yellow)", m: "var(--mizu)", g: "var(--green)" };
 function alStyle(code) {
+  if (SKIN === "ehon") {
+    let k = EHON_AL[code];
+    if (!k) { let h = 0; for (const ch of code) h = (h * 31 + ch.charCodeAt(0)) % 4; k = "cymg"[h]; }
+    return `--al-bg:${EHON_COL[k]};--al-fg:var(--ink)`;
+  }
   const c = AL[code];
   if (c) return `--al-bg:${c[0]};--al-fg:${c[1]}`;
   let h = 0; for (const ch of code) h = (h * 31 + ch.charCodeAt(0)) % 360;
@@ -851,7 +1026,8 @@ function tripCard(w) {
 
 function emptyCard() {
   return `<section class="heroCard">
-    <svg width="148" height="96" viewBox="0 0 148 96" fill="none" aria-hidden="true" style="margin:0 auto">
+    <div class="ehon-only" style="display:flex;justify-content:center;align-items:flex-end;gap:4px">${art("suitcase", "float d2")}${art("plane", "float")}</div>
+    <svg class="modern-only" width="148" height="96" viewBox="0 0 148 96" fill="none" aria-hidden="true" style="margin:0 auto">
       <circle cx="74" cy="50" r="44" fill="var(--brand-soft)"/>
       <path d="M22 70c6-14 22-20 34-14 4-10 16-14 26-8 10-4 22 2 24 12 10 0 16 8 14 16H22z" fill="var(--card)" stroke="var(--line-2)" stroke-width="1.5"/>
       <path d="M30 40 C60 10 100 12 128 28" stroke="var(--brand)" stroke-width="1.6" stroke-dasharray="3 5" stroke-linecap="round"/>
@@ -884,6 +1060,9 @@ function settingsCard() {
     <div class="row"><div class="lab"><span class="ic">${IC.coin(17)}</span><div>${esc(t("currency"))}<small>${esc(t("currencyHint"))}</small></div></div><select class="inp" data-act="currency" aria-label="${esc(t("currency"))}">${curOpts}</select></div>
     <div class="row"><div class="lab"><span class="ic">${IC.clock(17)}</span><div>${esc(t("every"))}</div></div><select class="inp" data-act="interval" aria-label="${esc(t("every"))}">${ivOpts}</select></div>
     <div class="row"><div class="lab"><span class="ic">${IC.globe(17)}</span><div>${esc(t("notifLang"))}</div></div><select class="inp" data-act="nlang" aria-label="${esc(t("notifLang"))}">${lgOpts}</select></div>
+    <div class="row"><div class="lab"><span class="ic">${IC.palette(17)}</span><div>${esc(t("style"))}</div></div>
+      <div class="seg" role="group">${[["ehon", "styleEhon"], ["modern", "styleModern"]].map(([v, k]) =>
+        `<button data-act="skin" data-v="${v}" aria-pressed="${SKIN === v}">${esc(t(k))}</button>`).join("")}</div></div>
   </section>`;
 }
 function eventsCard() {
@@ -941,6 +1120,7 @@ $("#app").addEventListener("click", async (e) => {
   else if (act === "ret") { S.sel[w.id] = { d: S.sel[w.id].d, r: el.dataset.d }; render(); }
   else if (act === "pair") { S.sel[w.id] = { d: el.dataset.d, r: el.dataset.r }; render(); }
   else if (act === "sort") { S.sort = el.dataset.v; store.set("fw-sort", S.sort); render(); }
+  else if (act === "skin") { SKIN = el.dataset.v; store.set("fw-skin", SKIN); applySkin(); render(); }
   else if (act === "win") { S.onlyWin[w.id] = !S.onlyWin[w.id]; render(); }
   else if (act === "edit") openEditor(w);
   else if (act === "add") openEditor(null);
@@ -1095,6 +1275,8 @@ $("#fReturn").addEventListener("click", () => {
   openEditor(null, { ...w, name: t("returnName"), from: w.to, to: w.from, date_from: d0, date_to: addDays(d0, daysBetween(w.date_from, w.date_to)), pinned: [] });
 });
 
+$("#heroArt").innerHTML = art("sun", "a2 float d3") + art("plane", "a1 float") + art("cloud", "a3 float d2");
+applySkin();
 render();
 refresh();
 </script>
